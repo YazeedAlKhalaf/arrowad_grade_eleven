@@ -22,6 +22,7 @@ class RegisterView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  model.isBusy ? LinearProgressIndicator() : SizedBox.shrink(),
                   const SizedBox(height: 50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -116,7 +117,9 @@ class RegisterView extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    await model.registerUser();
+                                    await model.registerUser(
+                                      context: context,
+                                    );
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(15),

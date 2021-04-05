@@ -1,3 +1,4 @@
+import 'package:arrowad_grade_eleven/src/ui/views/home/home_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/register/register_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/startup/startup_view.dart';
 import 'package:auto_route/auto_route.dart';
@@ -9,6 +10,7 @@ export './router.gr.dart';
   routes: <AutoRoute<dynamic>>[
     AutoRoute(page: StartupView, path: "/", initial: true),
     AutoRoute(page: RegisterView, path: "/register"),
+    AutoRoute(page: HomeView, path: "/home"),
   ],
 )
 class $AppRouter {}
