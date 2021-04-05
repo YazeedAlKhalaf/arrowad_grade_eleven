@@ -1,3 +1,6 @@
+import 'package:arrowad_grade_eleven/src/app/core/validators/name_validator.dart';
+import 'package:arrowad_grade_eleven/src/app/core/validators/phone_number_validator.dart';
+import 'package:arrowad_grade_eleven/src/app/core/validators/s_number_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,9 +17,126 @@ class RegisterView extends StatelessWidget {
         Widget child,
       ) {
         return Scaffold(
-          body: Center(
-            child: Text(
-              'RegisterView',
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(height: 50),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Register",
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Form(
+                      key: model.registerFormKey,
+                      autovalidateMode: model.autoValidate
+                          ? AutovalidateMode.onUserInteraction
+                          : null,
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: TextFormField(
+                                  controller: model.firstNameController,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    labelText: "First Name",
+                                  ),
+                                  validator: (String firstName) {
+                                    return validateName(firstName, true);
+                                  },
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: model.lastNameController,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    labelText: "Last Name",
+                                  ),
+                                  validator: (String lastName) {
+                                    return validateName(lastName, false);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            controller: model.sNumberController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              labelText: "S-Number",
+                              prefixText: "S",
+                            ),
+                            validator: (String sNumber) {
+                              return validateSNumber(sNumber);
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                            controller: model.phoneNumberController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              labelText: "Phone Number",
+                            ),
+                            validator: (String phoneNumber) {
+                              return validatePhoneNumber(phoneNumber);
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    await model.registerUser();
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: Text(
+                                      "Register",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
