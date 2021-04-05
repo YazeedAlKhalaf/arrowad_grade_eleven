@@ -17,6 +17,20 @@ class RegisterViewModel extends CustomBaseViewModel {
     notifyListeners();
   }
 
+  String _verificationId;
+  String get verificationId => _verificationId;
+  void setVerificationId(String newValue) {
+    _verificationId = newValue;
+    notifyListeners();
+  }
+
+  int _resendToken;
+  int get resendToken => _resendToken;
+  void setResendToken(int newValue) {
+    _resendToken = newValue;
+    notifyListeners();
+  }
+
   Future<void> registerUser() async {
     if (registerFormKey.currentState.validate()) {
       final String firstNameTrimmed = firstNameController.text.trim();
