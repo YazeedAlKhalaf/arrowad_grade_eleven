@@ -316,7 +316,8 @@ class HomeView extends StatelessWidget {
                   ),
                   currentAccountPicture: CircleAvatar(
                     backgroundImage: NetworkImage(
-                      "https://i.pinimg.com/originals/fb/0c/d8/fb0cd89bce0a2568cd12c1af2be34646.jpg",
+                      model.currentUser.photoUrl ??
+                          "https://firebasestorage.googleapis.com/v0/b/arrowad-grade-eleven.appspot.com/o/placeholder-person.jpg?alt=media&token=c4e35987-16f2-4d48-9f59-8a64dd60bcf6",
                     ),
                   ),
                 ),
