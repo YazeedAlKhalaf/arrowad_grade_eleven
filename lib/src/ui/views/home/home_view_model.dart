@@ -1,7 +1,12 @@
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
+import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
+import 'package:arrowad_grade_eleven/src/app/router/router.gr.dart';
+import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 
 class HomeViewModel extends CustomBaseViewModel {
+  final RouterService _routerService = locator<RouterService>();
+
   List<KTeacher> _teachersList = <KTeacher>[
     KTeacher(
       id: "ali_hwedy",
@@ -22,5 +27,11 @@ class HomeViewModel extends CustomBaseViewModel {
   void setTeachersList(List<KTeacher> newValue) {
     _teachersList = newValue;
     notifyListeners();
+  }
+
+  Future<void> navigateToMaterialCoveredView() async {
+    await _routerService.appRouter.push(
+      MaterialCoveredRoute(),
+    );
   }
 }

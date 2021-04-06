@@ -14,6 +14,9 @@ class FirestoreService {
   final CollectionReference _usersCollection = _firebaseFirestore.collection(
     Constants.usersCollectionName,
   );
+  final CollectionReference _setupCollection = _firebaseFirestore.collection(
+    Constants.setupCollectionName,
+  );
 
   /// create user with provided user model
   /// may return error in case there is
@@ -40,6 +43,19 @@ class FirestoreService {
       print("Got user with data: ${user.toString()}");
 
       return user;
+    } catch (exception) {
+      return ErrorService.handleFirestoreExceptions(exception);
+    }
+  }
+
+  Future<dynamic> getPdfFileUrl() async {
+    try {
+      final DocumentSnapshot documentSnapshot =
+          await _setupCollection.doc("material_covered").get();
+
+      final String pdfFileUrl = documentSnapshot.data()["pdfFileUrl"];
+
+      return pdfFileUrl;
     } catch (exception) {
       return ErrorService.handleFirestoreExceptions(exception);
     }

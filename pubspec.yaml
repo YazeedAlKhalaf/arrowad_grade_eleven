@@ -21,6 +21,8 @@ dependencies:
 
   flash: ^1.5.1
 
+  syncfusion_flutter_pdfviewer: ^19.1.55-beta
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

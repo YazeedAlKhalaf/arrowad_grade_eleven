@@ -272,7 +272,9 @@ class HomeView extends StatelessWidget {
                             text: "Material Covered",
                             iconPath: "assets/icons/material_icon.png",
                             color: KColors.blue,
-                            onTap: () {},
+                            onTap: () async {
+                              await model.navigateToMaterialCoveredView();
+                            },
                           ),
                           CustomElevatedButton(
                             text: "Tips",

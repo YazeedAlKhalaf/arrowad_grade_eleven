@@ -5,6 +5,8 @@
 // **************************************************************************
 
 import 'package:arrowad_grade_eleven/src/ui/views/home/home_view.dart' as _i4;
+import 'package:arrowad_grade_eleven/src/ui/views/material_covered/material_covered_view.dart'
+    as _i5;
 import 'package:arrowad_grade_eleven/src/ui/views/register/register_view.dart'
     as _i3;
 import 'package:arrowad_grade_eleven/src/ui/views/startup/startup_view.dart'
@@ -24,6 +26,9 @@ class AppRouter extends _i1.RootStackRouter {
     },
     HomeRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i4.HomeView());
+    },
+    MaterialCoveredRoute.name: (entry) {
+      return _i1.AdaptivePage(entry: entry, child: _i5.MaterialCoveredView());
     }
   };
 
@@ -31,7 +36,8 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(StartupRoute.name, path: '/'),
         _i1.RouteConfig(RegisterRoute.name, path: '/register'),
-        _i1.RouteConfig(HomeRoute.name, path: '/home')
+        _i1.RouteConfig(HomeRoute.name, path: '/home'),
+        _i1.RouteConfig(MaterialCoveredRoute.name, path: '/material-covered')
       ];
 }
 
@@ -51,4 +57,10 @@ class HomeRoute extends _i1.PageRouteInfo {
   const HomeRoute() : super(name, path: '/home');
 
   static const String name = 'HomeRoute';
+}
+
+class MaterialCoveredRoute extends _i1.PageRouteInfo {
+  const MaterialCoveredRoute() : super(name, path: '/material-covered');
+
+  static const String name = 'MaterialCoveredRoute';
 }
