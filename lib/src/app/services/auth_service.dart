@@ -140,6 +140,9 @@ class AuthService {
       lastName: lastName,
       phoneNumber: phoneNumber,
       sNumber: sNumber,
+      photoUrl: null,
+      section: "boys",
+      batch: "f",
     );
     await _firestoreService.createUser(
       user: currentUser,

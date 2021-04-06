@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:meta/meta.dart';
 
 class KUser {
@@ -7,6 +8,13 @@ class KUser {
   final String lastName;
   final String sNumber;
   final String phoneNumber;
+  final String photoUrl;
+
+  /// boys or girls.
+  final String section;
+
+  /// a letter indicating the batch the student is in.
+  final String batch;
 
   const KUser({
     @required this.id,
@@ -14,6 +22,9 @@ class KUser {
     @required this.lastName,
     @required this.sNumber,
     @required this.phoneNumber,
+    @required this.photoUrl,
+    @required this.section,
+    @required this.batch,
   });
 
   KUser copyWith({
@@ -22,6 +33,9 @@ class KUser {
     String lastName,
     String sNumber,
     String phoneNumber,
+    String photoUrl,
+    String section,
+    String batch,
   }) {
     return KUser(
       id: id ?? this.id,
@@ -29,6 +43,9 @@ class KUser {
       lastName: lastName ?? this.lastName,
       sNumber: sNumber ?? this.sNumber,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      photoUrl: photoUrl ?? this.photoUrl,
+      section: section ?? this.section,
+      batch: batch ?? this.batch,
     );
   }
 
@@ -39,6 +56,9 @@ class KUser {
       'lastName': lastName,
       'sNumber': sNumber,
       'phoneNumber': phoneNumber,
+      'photoUrl': photoUrl,
+      'section': section,
+      'batch': batch,
     };
   }
 
@@ -49,6 +69,9 @@ class KUser {
       lastName: map['lastName'],
       sNumber: map['sNumber'],
       phoneNumber: map['phoneNumber'],
+      photoUrl: map['photoUrl'],
+      section: map['section'],
+      batch: map['batch'],
     );
   }
 
@@ -58,7 +81,7 @@ class KUser {
 
   @override
   String toString() {
-    return 'KUser(id: $id, firstName: $firstName, lastName: $lastName, sNumber: $sNumber, phoneNumber: $phoneNumber)';
+    return 'KUser(id: $id, firstName: $firstName, lastName: $lastName, sNumber: $sNumber, phoneNumber: $phoneNumber, photoUrl: $photoUrl, section: $section, batch: $batch)';
   }
 
   @override
@@ -70,7 +93,10 @@ class KUser {
         other.firstName == firstName &&
         other.lastName == lastName &&
         other.sNumber == sNumber &&
-        other.phoneNumber == phoneNumber;
+        other.phoneNumber == phoneNumber &&
+        other.photoUrl == photoUrl &&
+        other.section == section &&
+        other.batch == batch;
   }
 
   @override
@@ -79,6 +105,9 @@ class KUser {
         firstName.hashCode ^
         lastName.hashCode ^
         sNumber.hashCode ^
-        phoneNumber.hashCode;
+        phoneNumber.hashCode ^
+        photoUrl.hashCode ^
+        section.hashCode ^
+        batch.hashCode;
   }
 }
