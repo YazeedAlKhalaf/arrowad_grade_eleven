@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
@@ -91,6 +92,39 @@ class AuthService {
       }
     } on FirebaseAuthException catch (exception) {
       return ErrorService.handleFirebaseAuthExceptions(exception);
+    }
+  }
+
+  Future<ConfirmationResult> sendVerificationCodeWeb({
+    @required String phoneNumber,
+  }) async {
+    ConfirmationResult confirmationResult =
+        await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
+
+    return confirmationResult;
+  }
+
+  Future<void> verifyPhoneNumberWeb({
+    @required ConfirmationResult confirmationResult,
+    @required String verificationCode,
+    @required String phoneNumber,
+    String firstName,
+    String lastName,
+    String sNumber,
+  }) async {
+    await confirmationResult.confirm(
+      verificationCode,
+    );
+
+    if (firstName != null && lastName != null && sNumber != null) {
+      await _registerUserInDb(
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        sNumber: sNumber,
+      );
+    } else {
+      await populateCurrentUser();
     }
   }
 

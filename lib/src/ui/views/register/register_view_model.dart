@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
@@ -46,9 +48,17 @@ class RegisterViewModel extends CustomBaseViewModel {
     notifyListeners();
   }
 
+  ConfirmationResult _confirmationResult;
+  ConfirmationResult get confirmationResult => _confirmationResult;
+  void setConfirmationResult(ConfirmationResult newValue) {
+    _confirmationResult = newValue;
+    notifyListeners();
+  }
+
   Future<void> registerUser({
     @required BuildContext context,
   }) async {
+    // TODO: make web work
     if (registerFormKey.currentState.validate()) {
       setBusy(true);
       final String firstNameTrimmed = firstNameController.text.trim();
@@ -60,20 +70,29 @@ class RegisterViewModel extends CustomBaseViewModel {
 
       print("Register new user in firebase");
 
-      final dynamic response = await _getVerificationId(
-        phoneNumber: phoneNumberTrimmed,
-        firstName: firstNameTrimmed,
-        lastName: lastNameTrimmed,
-        sNumber: sNumberTrimmed,
-      );
-
-      /// if error then show error bar
-      if (response is KError) {
-        setBusy(false);
-        return FlashHelper.errorBar(
-          context,
-          message: response.userFriendlyMessage,
+      if (!kIsWeb) {
+        final dynamic response = await _getVerificationId(
+          phoneNumber: phoneNumberTrimmed,
+          firstName: firstNameTrimmed,
+          lastName: lastNameTrimmed,
+          sNumber: sNumberTrimmed,
         );
+
+        /// if error then show error bar
+        if (response is KError) {
+          setBusy(false);
+          return FlashHelper.errorBar(
+            context,
+            message: response.userFriendlyMessage,
+          );
+        }
+      } else {
+        final ConfirmationResult confirmationResult =
+            await _authService.sendVerificationCodeWeb(
+          phoneNumber: phoneNumberTrimmed,
+        );
+
+        setConfirmationResult(confirmationResult);
       }
 
       /// clear to make sure nothing remains in the controller
@@ -86,13 +105,21 @@ class RegisterViewModel extends CustomBaseViewModel {
           return VerificationUI(
             controller: verificationCodeController,
             onPressed: () async {
-              await doVerification(
-                context: context,
-                phoneNumber: phoneNumberTrimmed,
-                firstName: firstNameTrimmed,
-                lastName: lastNameTrimmed,
-                sNumber: sNumberTrimmed,
-              );
+              if (!kIsWeb) {
+                await doVerification(
+                  context: context,
+                  phoneNumber: phoneNumberTrimmed,
+                  firstName: firstNameTrimmed,
+                  lastName: lastNameTrimmed,
+                  sNumber: sNumberTrimmed,
+                );
+              } else {
+                await _authService.verifyPhoneNumberWeb(
+                  phoneNumber: phoneNumberTrimmed,
+                  confirmationResult: confirmationResult,
+                  verificationCode: verificationCodeController.text,
+                );
+              }
             },
           );
         },
