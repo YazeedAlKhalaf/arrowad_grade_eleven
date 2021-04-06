@@ -275,7 +275,7 @@ class HomeView extends StatelessWidget {
                             onTap: () {},
                           ),
                           CustomElevatedButton(
-                            text: "Material Covered",
+                            text: "Tips",
                             iconPath: "assets/icons/tips_icon.png",
                             color: KColors.yellow,
                             onTap: () {},
