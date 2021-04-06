@@ -21,7 +21,7 @@ class HomeworkViewModel extends CustomBaseViewModel {
   }
 
   List<KHomework> _homeworkList = <KHomework>[];
-  List<KHomework> get homeworkLit => _homeworkList;
+  List<KHomework> get homeworkList => _homeworkList;
   void setHomeworkList(List<KHomework> newValue) {
     _homeworkList = newValue;
     notifyListeners();
