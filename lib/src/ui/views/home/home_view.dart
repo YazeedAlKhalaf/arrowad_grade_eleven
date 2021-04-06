@@ -291,7 +291,31 @@ class HomeView extends StatelessWidget {
         }
 
         Widget _buildDrawer() {
-          return Drawer();
+          return Drawer(
+            child: Column(
+              children: <Widget>[
+                UserAccountsDrawerHeader(
+                  accountName: Text(
+                    "${model.currentUser.firstName} ${model.currentUser.lastName} - S${model.currentUser.sNumber}",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  accountEmail: Text(
+                    "${model.currentUser.phoneNumber}",
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      "https://i.pinimg.com/originals/fb/0c/d8/fb0cd89bce0a2568cd12c1af2be34646.jpg",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
         }
 
         return Scaffold(
