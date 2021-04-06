@@ -73,7 +73,11 @@ class HomeworkItemsView extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    await model.navigateToHomeworkItemInfoView(
+                      homeworkItem: homeworkItem,
+                    );
+                  },
                 );
               },
             ),
