@@ -1,3 +1,4 @@
+import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -131,7 +132,7 @@ class HomeView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Text(
-                                "learn more",
+                                "learn more ",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -148,6 +149,86 @@ class HomeView extends StatelessWidget {
                 ),
               ],
             ),
+          );
+        }
+
+        Widget _buildTeachers() {
+          return Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            "Teachers",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                "see more ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 150,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: model.teachersList.length,
+                        itemBuilder: (
+                          BuildContext context,
+                          int index,
+                        ) {
+                          final KTeacher teacher = model.teachersList[index];
+
+                          return Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: <Widget>[
+                                CircleAvatar(
+                                  radius: 40,
+                                  backgroundImage: NetworkImage(
+                                    teacher.photoUrl,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  "${teacher.firstName}\n${teacher.lastName}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           );
         }
 
@@ -169,6 +250,7 @@ class HomeView extends StatelessWidget {
                   _buildWhatsForTomorrow(),
 
                   // TODO: teachers
+                  _buildTeachers(),
 
                   // TODO: extras
                 ],
