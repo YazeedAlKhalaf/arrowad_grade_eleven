@@ -15,8 +15,10 @@ import 'package:arrowad_grade_eleven/src/ui/views/startup/startup_view.dart'
     as _i2;
 import 'package:arrowad_grade_eleven/src/ui/views/teacher_info/teacher_info_view.dart'
     as _i6;
+import 'package:arrowad_grade_eleven/src/ui/views/teacher_list/teacher_list_view.dart'
+    as _i8;
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -44,6 +46,9 @@ class AppRouter extends _i1.RootStackRouter {
     },
     ScheduleRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i7.ScheduleView());
+    },
+    TeacherListRoute.name: (entry) {
+      return _i1.AdaptivePage(entry: entry, child: _i8.TeacherListView());
     }
   };
 
@@ -54,7 +59,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(HomeRoute.name, path: '/home'),
         _i1.RouteConfig(MaterialCoveredRoute.name, path: '/material-covered'),
         _i1.RouteConfig(TeacherInfoRoute.name, path: '/teacher/:id'),
-        _i1.RouteConfig(ScheduleRoute.name, path: '/schedule')
+        _i1.RouteConfig(ScheduleRoute.name, path: '/schedule'),
+        _i1.RouteConfig(TeacherListRoute.name, path: '/teacher-list')
       ];
 }
 
@@ -83,7 +89,7 @@ class MaterialCoveredRoute extends _i1.PageRouteInfo {
 }
 
 class TeacherInfoRoute extends _i1.PageRouteInfo<TeacherInfoRouteArgs> {
-  TeacherInfoRoute({_i8.Key key, String id})
+  TeacherInfoRoute({_i9.Key key, String id})
       : super(name,
             path: '/teacher/:id',
             args: TeacherInfoRouteArgs(key: key, id: id),
@@ -95,7 +101,7 @@ class TeacherInfoRoute extends _i1.PageRouteInfo<TeacherInfoRouteArgs> {
 class TeacherInfoRouteArgs {
   const TeacherInfoRouteArgs({this.key, this.id});
 
-  final _i8.Key key;
+  final _i9.Key key;
 
   final String id;
 }
@@ -104,4 +110,10 @@ class ScheduleRoute extends _i1.PageRouteInfo {
   const ScheduleRoute() : super(name, path: '/schedule');
 
   static const String name = 'ScheduleRoute';
+}
+
+class TeacherListRoute extends _i1.PageRouteInfo {
+  const TeacherListRoute() : super(name, path: '/teacher-list');
+
+  static const String name = 'TeacherListRoute';
 }

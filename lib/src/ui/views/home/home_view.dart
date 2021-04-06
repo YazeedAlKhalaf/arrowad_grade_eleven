@@ -178,19 +178,28 @@ class HomeView extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Text(
-                                "see more ",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          InkWell(
+                            borderRadius: BorderRadius.circular(50),
+                            onTap: () async {
+                              await model.navigateToTeacherListView();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Text(
+                                    "see more ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                  ),
+                                ],
                               ),
-                              Icon(
-                                Icons.arrow_forward,
-                              ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
