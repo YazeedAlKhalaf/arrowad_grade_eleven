@@ -288,7 +288,9 @@ class HomeView extends StatelessWidget {
                             text: "Schedule",
                             icon: Icons.schedule,
                             color: KColors.purple,
-                            onTap: () {},
+                            onTap: () async {
+                              await model.navigateToScheduleView();
+                            },
                           ),
                           CustomElevatedButton(
                             text: "Material Covered",

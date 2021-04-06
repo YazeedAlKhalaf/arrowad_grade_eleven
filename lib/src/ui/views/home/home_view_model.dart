@@ -63,4 +63,10 @@ class HomeViewModel extends CustomBaseViewModel {
       ),
     );
   }
+
+  Future<void> navigateToScheduleView() async {
+    await _routerService.appRouter.push(
+      ScheduleRoute(),
+    );
+  }
 }
