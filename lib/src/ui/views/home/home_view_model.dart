@@ -53,4 +53,14 @@ class HomeViewModel extends CustomBaseViewModel {
       MaterialCoveredRoute(),
     );
   }
+
+  Future<void> navigateToTeacherView({
+    @required String teacherId,
+  }) async {
+    await _routerService.appRouter.push(
+      TeacherInfoRoute(
+        id: teacherId,
+      ),
+    );
+  }
 }

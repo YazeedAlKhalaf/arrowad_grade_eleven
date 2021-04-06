@@ -84,4 +84,19 @@ class FirestoreService {
       return ErrorService.handleFirestoreExceptions(exception);
     }
   }
+
+  Future<dynamic> getTeacherById({
+    @required String id,
+  }) async {
+    try {
+      final DocumentSnapshot documentSnapshot =
+          await _teachersCollection.doc(id).get();
+
+      final KTeacher teacher = KTeacher.fromMap(documentSnapshot.data());
+
+      return teacher;
+    } catch (exception) {
+      return ErrorService.handleFirestoreExceptions(exception);
+    }
+  }
 }

@@ -207,26 +207,33 @@ class HomeView extends StatelessWidget {
                         ) {
                           final KTeacher teacher = model.teachersList[index];
 
-                          return Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: <Widget>[
-                                CircleAvatar(
-                                  radius: 40,
-                                  backgroundImage: NetworkImage(
-                                    teacher.photoUrl,
+                          return InkWell(
+                            onTap: () async {
+                              await model.navigateToTeacherView(
+                                teacherId: teacher.id,
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: NetworkImage(
+                                      teacher.photoUrl,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  "${teacher.firstName}\n${teacher.lastName}",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    "${teacher.firstName}\n${teacher.lastName}",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         },

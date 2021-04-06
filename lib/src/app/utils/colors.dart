@@ -6,4 +6,5 @@ class KColors {
   static const Color purple = Color(0xff7A7DFA);
   static const Color blue = Color(0xff73AEED);
   static const Color yellow = Color(0xffF4D590);
+  static const Color green = Color(0xff8DCB98);
 }
