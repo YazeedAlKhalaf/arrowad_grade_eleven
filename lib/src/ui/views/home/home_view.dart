@@ -303,14 +303,10 @@ class HomeView extends StatelessWidget {
                 children: <Widget>[
                   _buildDrawerRow(),
                   _buildNameRow(),
-
-                  // TODO: what's for tomorrow
                   _buildWhatsForTomorrow(),
                   const SizedBox(height: 10),
-                  // TODO: teachers
                   _buildTeachers(),
                   const SizedBox(height: 10),
-                  // TODO: extras
                   _buildExtras(),
                   const SizedBox(height: 10),
                 ],
