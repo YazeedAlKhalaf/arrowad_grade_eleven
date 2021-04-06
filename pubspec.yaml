@@ -31,3 +31,14 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/fonts/
+
+  fonts:
+    - family: Agency FB
+      fonts:
+        - asset: assets/fonts/agency_fb.ttf
+        - asset: assets/fonts/agency_fb_bold.ttf
+          weight: 700

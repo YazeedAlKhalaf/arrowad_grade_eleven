@@ -8,6 +8,12 @@ class App extends StatelessWidget {
     final RouterService _routerService = locator<RouterService>();
 
     return MaterialApp.router(
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
       routerDelegate: _routerService.appRouter.delegate(),
       routeInformationParser: _routerService.appRouter.defaultRouteParser(),
     );
