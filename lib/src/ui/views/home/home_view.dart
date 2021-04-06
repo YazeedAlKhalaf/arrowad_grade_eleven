@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
@@ -348,6 +349,22 @@ class HomeView extends StatelessWidget {
                           "https://firebasestorage.googleapis.com/v0/b/arrowad-grade-eleven.appspot.com/o/placeholder-person.jpg?alt=media&token=c4e35987-16f2-4d48-9f59-8a64dd60bcf6",
                     ),
                   ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    FontAwesomeIcons.signOutAlt,
+                    color: Colors.red,
+                  ),
+                  title: Text(
+                    "Sign Out",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onTap: () async {
+                    await model.signOut();
+                  },
                 ),
               ],
             ),

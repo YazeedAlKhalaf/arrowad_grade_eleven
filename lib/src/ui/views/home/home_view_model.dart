@@ -3,12 +3,14 @@ import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/router/router.gr.dart';
+import 'package:arrowad_grade_eleven/src/app/services/auth_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/firestore_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomeViewModel extends CustomBaseViewModel {
+  final AuthService _authService = locator<AuthService>();
   final FirestoreService _firestoreService = locator<FirestoreService>();
   final RouterService _routerService = locator<RouterService>();
 
@@ -73,6 +75,15 @@ class HomeViewModel extends CustomBaseViewModel {
   Future<void> navigateToTeacherListView() async {
     await _routerService.appRouter.push(
       TeacherListRoute(),
+    );
+  }
+
+  Future<void> signOut() async {
+    await _authService.signOut();
+
+    await _routerService.appRouter.pushAndRemoveUntil(
+      RegisterRoute(),
+      predicate: (_) => false,
     );
   }
 }
