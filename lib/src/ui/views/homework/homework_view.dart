@@ -42,7 +42,11 @@ class HomeworkView extends StatelessWidget {
                   subtitle: Text(
                     "${intl.DateFormat("dd MMM, yyyy").format(homeworkCreatedAt)}",
                   ),
-                  onTap: () async {},
+                  onTap: () async {
+                    await model.navigateToHomeworkItemsView(
+                      homework: homework,
+                    );
+                  },
                 );
               },
             ),

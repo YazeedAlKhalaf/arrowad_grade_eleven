@@ -61,7 +61,7 @@ class KHomeworkItem {
       subject: map['subject'],
       name: map['name'],
       description: map['description'],
-      dueDate: DateTime.fromMillisecondsSinceEpoch(map['dueDate']),
+      dueDate: DateTime.fromMillisecondsSinceEpoch(map['dueDate'] * 1000),
       createdAt: map['createdAt'],
     );
   }
