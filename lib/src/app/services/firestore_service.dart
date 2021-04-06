@@ -1,3 +1,4 @@
+import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -16,6 +17,9 @@ class FirestoreService {
   );
   final CollectionReference _setupCollection = _firebaseFirestore.collection(
     Constants.setupCollectionName,
+  );
+  final CollectionReference _teachersCollection = _firebaseFirestore.collection(
+    Constants.teachersCollectionName,
   );
 
   /// create user with provided user model
@@ -56,6 +60,26 @@ class FirestoreService {
       final String pdfFileUrl = documentSnapshot.data()["pdfFileUrl"];
 
       return pdfFileUrl;
+    } catch (exception) {
+      return ErrorService.handleFirestoreExceptions(exception);
+    }
+  }
+
+  Future<dynamic> getTeachers() async {
+    try {
+      final QuerySnapshot querySnapshot = await _teachersCollection.get();
+
+      final List<KTeacher> teacherList = <KTeacher>[];
+
+      querySnapshot.docs.forEach((QueryDocumentSnapshot queryDocumentSnapshot) {
+        teacherList.add(
+          KTeacher.fromMap(
+            queryDocumentSnapshot.data(),
+          ),
+        );
+      });
+
+      return teacherList;
     } catch (exception) {
       return ErrorService.handleFirestoreExceptions(exception);
     }

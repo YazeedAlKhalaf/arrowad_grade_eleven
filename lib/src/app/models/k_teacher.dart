@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:meta/meta.dart';
 
 class KTeacher {
@@ -6,12 +7,16 @@ class KTeacher {
   final String firstName;
   final String lastName;
   final String photoUrl;
+  final String phoneNumber;
+  final String subject;
 
   const KTeacher({
     @required this.id,
     @required this.firstName,
     @required this.lastName,
     @required this.photoUrl,
+    @required this.phoneNumber,
+    @required this.subject,
   });
 
   KTeacher copyWith({
@@ -19,12 +24,16 @@ class KTeacher {
     String firstName,
     String lastName,
     String photoUrl,
+    String phoneNumber,
+    String subject,
   }) {
     return KTeacher(
       id: id ?? this.id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       photoUrl: photoUrl ?? this.photoUrl,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      subject: subject ?? this.subject,
     );
   }
 
@@ -34,6 +43,8 @@ class KTeacher {
       'firstName': firstName,
       'lastName': lastName,
       'photoUrl': photoUrl,
+      'phoneNumber': phoneNumber,
+      'subject': subject,
     };
   }
 
@@ -43,6 +54,8 @@ class KTeacher {
       firstName: map['firstName'],
       lastName: map['lastName'],
       photoUrl: map['photoUrl'],
+      phoneNumber: map['phoneNumber'],
+      subject: map['subject'],
     );
   }
 
@@ -53,7 +66,7 @@ class KTeacher {
 
   @override
   String toString() {
-    return 'KTeacher(id: $id, firstName: $firstName, lastName: $lastName, photoUrl: $photoUrl)';
+    return 'KTeacher(id: $id, firstName: $firstName, lastName: $lastName, photoUrl: $photoUrl, phoneNumber: $phoneNumber, subject: $subject)';
   }
 
   @override
@@ -64,7 +77,9 @@ class KTeacher {
         other.id == id &&
         other.firstName == firstName &&
         other.lastName == lastName &&
-        other.photoUrl == photoUrl;
+        other.photoUrl == photoUrl &&
+        other.phoneNumber == phoneNumber &&
+        other.subject == subject;
   }
 
   @override
@@ -72,6 +87,8 @@ class KTeacher {
     return id.hashCode ^
         firstName.hashCode ^
         lastName.hashCode ^
-        photoUrl.hashCode;
+        photoUrl.hashCode ^
+        phoneNumber.hashCode ^
+        subject.hashCode;
   }
 }

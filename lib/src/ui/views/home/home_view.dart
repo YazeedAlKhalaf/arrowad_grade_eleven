@@ -12,6 +12,11 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
+      onModelReady: (HomeViewModel model) async {
+        await model.init(
+          context: context,
+        );
+      },
       builder: (
         BuildContext context,
         HomeViewModel model,
@@ -323,19 +328,26 @@ class HomeView extends StatelessWidget {
         return Scaffold(
           drawer: _buildDrawer(),
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _buildDrawerRow(),
-                  _buildNameRow(),
-                  _buildWhatsForTomorrow(),
-                  const SizedBox(height: 10),
-                  _buildTeachers(),
-                  const SizedBox(height: 10),
-                  _buildExtras(),
-                  const SizedBox(height: 10),
-                ],
+            child: RefreshIndicator(
+              onRefresh: () async {
+                await model.init(
+                  context: context,
+                );
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _buildDrawerRow(),
+                    _buildNameRow(),
+                    _buildWhatsForTomorrow(),
+                    const SizedBox(height: 10),
+                    _buildTeachers(),
+                    const SizedBox(height: 10),
+                    _buildExtras(),
+                    const SizedBox(height: 10),
+                  ],
+                ),
               ),
             ),
           ),
