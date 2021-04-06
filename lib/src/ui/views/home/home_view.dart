@@ -1,7 +1,9 @@
-import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
-import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+
+import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
+import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
+import 'package:arrowad_grade_eleven/src/ui/widgets/custom_elevated_button.dart';
 
 import './home_view_model.dart';
 
@@ -232,6 +234,62 @@ class HomeView extends StatelessWidget {
           );
         }
 
+        Widget _buildExtras() {
+          return Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Extras",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          CustomElevatedButton(
+                            text: "Schedule",
+                            icon: Icons.schedule,
+                            color: KColors.purple,
+                            onTap: () {},
+                          ),
+                          CustomElevatedButton(
+                            text: "Material Covered",
+                            iconPath: "assets/icons/material_icon.png",
+                            color: KColors.blue,
+                            onTap: () {},
+                          ),
+                          CustomElevatedButton(
+                            text: "Material Covered",
+                            iconPath: "assets/icons/tips_icon.png",
+                            color: KColors.yellow,
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        }
+
         Widget _buildDrawer() {
           return Drawer();
         }
@@ -248,11 +306,13 @@ class HomeView extends StatelessWidget {
 
                   // TODO: what's for tomorrow
                   _buildWhatsForTomorrow(),
-
+                  const SizedBox(height: 10),
                   // TODO: teachers
                   _buildTeachers(),
-
+                  const SizedBox(height: 10),
                   // TODO: extras
+                  _buildExtras(),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
