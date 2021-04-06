@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class Utils {
   static String formatPhoneNumber({
@@ -24,5 +25,19 @@ class Utils {
     print("Phone number before formatting: $phoneNumber");
     print("Phone number after formatting: $phoneNumberFormatted");
     return phoneNumberFormatted;
+  }
+
+  static Future<void> launchPhoneNumber({
+    @required String phoneNumber,
+  }) async {
+    final String launchablePhoneNumber = "tel:$phoneNumber";
+    await url_launcher.launch(launchablePhoneNumber);
+  }
+
+  static Future<void> launchPhoneNumberInWhatsapp({
+    @required String phoneNumber,
+  }) async {
+    final String launchablePhoneNumber = "https://wa.me/$phoneNumber";
+    await url_launcher.launch(launchablePhoneNumber);
   }
 }

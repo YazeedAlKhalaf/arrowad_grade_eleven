@@ -1,7 +1,9 @@
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
+import 'package:arrowad_grade_eleven/src/app/utils/utils.dart';
 import 'package:arrowad_grade_eleven/src/ui/widgets/custom_elevated_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import './teacher_info_view_model.dart';
@@ -81,6 +83,13 @@ class TeacherInfoView extends StatelessWidget {
                                         fontSize: 18,
                                       ),
                                     ),
+                                    const SizedBox(height: 10),
+                                    SelectableText(
+                                      model.teacher.phoneNumber,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -101,9 +110,36 @@ class TeacherInfoView extends StatelessWidget {
                                 color: KColors.green,
                                 icon: Icons.call,
                                 onTap: () async {
-                                  // TODO: call teacher
+                                  await Utils.launchPhoneNumber(
+                                    phoneNumber: model.teacher.phoneNumber,
+                                  );
                                   print(
                                     "Calling teacher with number: ${model.teacher.phoneNumber}",
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 5,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: CustomElevatedButton(
+                                text: "Whatsapp Teacher",
+                                color: KColors.green,
+                                icon: FontAwesomeIcons.whatsapp,
+                                onTap: () async {
+                                  await Utils.launchPhoneNumberInWhatsapp(
+                                    phoneNumber: model.teacher.phoneNumber,
+                                  );
+                                  print(
+                                    "Whatsapping teacher with number: ${model.teacher.phoneNumber}",
                                   );
                                 },
                               ),
