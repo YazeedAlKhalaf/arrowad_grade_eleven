@@ -1,20 +1,18 @@
-import 'package:arrowad_grade_eleven/src/app/core/validators/name_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/core/validators/phone_number_validator.dart';
-import 'package:arrowad_grade_eleven/src/app/core/validators/s_number_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import './register_view_model.dart';
+import './login_view_model.dart';
 
-class RegisterView extends StatelessWidget {
+class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<RegisterViewModel>.reactive(
-      viewModelBuilder: () => RegisterViewModel(),
+    return ViewModelBuilder<LoginViewModel>.reactive(
+      viewModelBuilder: () => LoginViewModel(),
       builder: (
         BuildContext context,
-        RegisterViewModel model,
+        LoginViewModel model,
         Widget child,
       ) {
         return Scaffold(
@@ -29,7 +27,7 @@ class RegisterView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Register",
+                        "Login",
                         style: TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
@@ -41,59 +39,12 @@ class RegisterView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Form(
-                      key: model.registerFormKey,
+                      key: model.loginFormKey,
                       autovalidateMode: model.autoValidate
                           ? AutovalidateMode.onUserInteraction
                           : null,
                       child: Column(
                         children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: TextFormField(
-                                  controller: model.firstNameController,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    labelText: "First Name",
-                                  ),
-                                  validator: (String firstName) {
-                                    return validateName(firstName, true);
-                                  },
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: TextFormField(
-                                  controller: model.lastNameController,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    labelText: "Last Name",
-                                  ),
-                                  validator: (String lastName) {
-                                    return validateName(lastName, false);
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          TextFormField(
-                            controller: model.sNumberController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              labelText: "S-Number",
-                              prefixText: "S",
-                            ),
-                            validator: (String sNumber) {
-                              return validateSNumber(sNumber);
-                            },
-                          ),
                           const SizedBox(height: 10),
                           TextFormField(
                             controller: model.phoneNumberController,
@@ -118,14 +69,14 @@ class RegisterView extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    await model.registerUser(
+                                    await model.loginUser(
                                       context: context,
                                     );
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(15),
                                     child: Text(
-                                      "Register",
+                                      "Login",
                                       style: TextStyle(
                                         fontSize: 18,
                                       ),
@@ -142,13 +93,13 @@ class RegisterView extends StatelessWidget {
                   const SizedBox(height: 20),
                   InkWell(
                     onTap: () async {
-                      await model.navigateToLoginView();
+                      await model.navigateToRegisterView();
                     },
                     borderRadius: BorderRadius.circular(50),
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Text(
-                        "Already have an account? Login!",
+                        "Have no account? Register!",
                         style: TextStyle(
                           color: KColors.blue,
                           fontWeight: FontWeight.bold,

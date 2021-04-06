@@ -1,27 +1,23 @@
+import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
+import 'package:arrowad_grade_eleven/src/app/router/router.dart';
+import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
+import 'package:arrowad_grade_eleven/src/app/utils/utils.dart';
+import 'package:arrowad_grade_eleven/src/ui/widgets/veritifcation_ui.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
-import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
-import 'package:arrowad_grade_eleven/src/app/router/router.dart';
 import 'package:arrowad_grade_eleven/src/app/services/auth_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
-import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
-import 'package:arrowad_grade_eleven/src/app/utils/utils.dart';
-import 'package:arrowad_grade_eleven/src/ui/widgets/veritifcation_ui.dart';
 
-class RegisterViewModel extends CustomBaseViewModel {
+class LoginViewModel extends CustomBaseViewModel {
   final AuthService _authService = locator<AuthService>();
-
-  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
-
   final RouterService _routerService = locator<RouterService>();
 
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController sNumberController = TextEditingController();
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+
   final TextEditingController phoneNumberController = TextEditingController();
 
   final TextEditingController verificationCodeController =
@@ -55,27 +51,21 @@ class RegisterViewModel extends CustomBaseViewModel {
     notifyListeners();
   }
 
-  Future<void> registerUser({
+  Future<void> loginUser({
     @required BuildContext context,
   }) async {
     // TODO: make web work
-    if (registerFormKey.currentState.validate()) {
+    if (loginFormKey.currentState.validate()) {
       setBusy(true);
-      final String firstNameTrimmed = firstNameController.text.trim();
-      final String lastNameTrimmed = lastNameController.text.trim();
-      final String sNumberTrimmed = sNumberController.text.trim();
       final String phoneNumberTrimmed = Utils.formatPhoneNumber(
         phoneNumber: phoneNumberController.text.trim(),
       );
 
-      print("Register new user in firebase");
+      print("Login existing user");
 
       if (!kIsWeb) {
         final dynamic response = await _getVerificationId(
           phoneNumber: phoneNumberTrimmed,
-          firstName: firstNameTrimmed,
-          lastName: lastNameTrimmed,
-          sNumber: sNumberTrimmed,
         );
 
         /// if error then show error bar
@@ -109,9 +99,6 @@ class RegisterViewModel extends CustomBaseViewModel {
                 await doVerification(
                   context: context,
                   phoneNumber: phoneNumberTrimmed,
-                  firstName: firstNameTrimmed,
-                  lastName: lastNameTrimmed,
-                  sNumber: sNumberTrimmed,
                 );
               } else {
                 await _authService.verifyPhoneNumberWeb(
@@ -136,16 +123,10 @@ class RegisterViewModel extends CustomBaseViewModel {
 
   Future<dynamic> _getVerificationId({
     @required String phoneNumber,
-    @required String firstName,
-    @required String lastName,
-    @required String sNumber,
   }) async {
     /// get verification id
     final dynamic response = await _authService.sendVerificationCode(
       phoneNumber: phoneNumber,
-      firstName: firstName,
-      lastName: lastName,
-      sNumber: sNumber,
       codeSent: (String verificationId, int resendToken) {
         print(
           "(codeSent) Verification ID: $verificationId",
@@ -170,9 +151,6 @@ class RegisterViewModel extends CustomBaseViewModel {
   Future<void> doVerification({
     @required BuildContext context,
     @required String phoneNumber,
-    @required String firstName,
-    @required String lastName,
-    @required String sNumber,
   }) async {
     removeFocus();
     final String verificationCodeString =
@@ -184,9 +162,6 @@ class RegisterViewModel extends CustomBaseViewModel {
         verificationId: verificationId,
         verificationCode: verificationCodeString,
         phoneNumber: phoneNumber,
-        firstName: firstName,
-        lastName: lastName,
-        sNumber: sNumber,
       );
 
       if (response is KError) {
@@ -206,9 +181,9 @@ class RegisterViewModel extends CustomBaseViewModel {
     }
   }
 
-  Future<void> navigateToLoginView() async {
+  Future<void> navigateToRegisterView() async {
     await _routerService.appRouter.pushAndRemoveUntil(
-      LoginRoute(),
+      RegisterRoute(),
       predicate: (_) => false,
     );
   }
