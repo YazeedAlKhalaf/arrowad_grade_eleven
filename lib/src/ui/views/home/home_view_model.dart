@@ -86,4 +86,10 @@ class HomeViewModel extends CustomBaseViewModel {
       predicate: (_) => false,
     );
   }
+
+  Future<void> navigateToHomeworkView() async {
+    await _routerService.appRouter.push(
+      HomeworkRoute(),
+    );
+  }
 }

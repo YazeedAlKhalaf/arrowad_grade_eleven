@@ -87,7 +87,7 @@ class HomeView extends StatelessWidget {
                           Row(
                             children: <Widget>[
                               Text(
-                                "What's for tomorrow",
+                                "Homework",
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -123,32 +123,33 @@ class HomeView extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text(
-                                    "12:30 PM - 2:30 PM",
-                                    style: TextStyle(
-                                      color: KColors.orange,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
                                 ],
                               ),
                             ],
                           ),
                           const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Text(
-                                "learn more ",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          InkWell(
+                            borderRadius: BorderRadius.circular(50),
+                            onTap: () async {
+                              await model.navigateToHomeworkView();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Text(
+                                    "learn more ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                  ),
+                                ],
                               ),
-                              Icon(
-                                Icons.arrow_forward,
-                              ),
-                            ],
+                            ),
                           ),
                         ],
                       ),

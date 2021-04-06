@@ -1,3 +1,4 @@
+import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
@@ -20,6 +21,9 @@ class FirestoreService {
   );
   final CollectionReference _teachersCollection = _firebaseFirestore.collection(
     Constants.teachersCollectionName,
+  );
+  final CollectionReference _homeworkCollection = _firebaseFirestore.collection(
+    Constants.homeworkCollectionName,
   );
 
   /// create user with provided user model
@@ -95,6 +99,28 @@ class FirestoreService {
       final KTeacher teacher = KTeacher.fromMap(documentSnapshot.data());
 
       return teacher;
+    } catch (exception) {
+      return ErrorService.handleFirestoreExceptions(exception);
+    }
+  }
+
+  Future<dynamic> getAllHomework() async {
+    try {
+      final QuerySnapshot querySnapshot = await _homeworkCollection
+          .orderBy("createdAt", descending: true)
+          .get();
+
+      final List<KHomework> homeworkList = <KHomework>[];
+
+      querySnapshot.docs.forEach((QueryDocumentSnapshot queryDocumentSnapshot) {
+        homeworkList.add(
+          KHomework.fromMap(
+            queryDocumentSnapshot.data(),
+          ),
+        );
+      });
+
+      return homeworkList;
     } catch (exception) {
       return ErrorService.handleFirestoreExceptions(exception);
     }
