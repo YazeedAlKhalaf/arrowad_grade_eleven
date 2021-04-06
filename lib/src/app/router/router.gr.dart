@@ -4,6 +4,8 @@
 // AutoRouteGenerator
 // **************************************************************************
 
+import 'package:arrowad_grade_eleven/src/ui/views/add_homework/add_homework_view.dart'
+    as _i11;
 import 'package:arrowad_grade_eleven/src/ui/views/home/home_view.dart' as _i4;
 import 'package:arrowad_grade_eleven/src/ui/views/homework/homework_view.dart'
     as _i10;
@@ -21,7 +23,7 @@ import 'package:arrowad_grade_eleven/src/ui/views/teacher_info/teacher_info_view
 import 'package:arrowad_grade_eleven/src/ui/views/teacher_list/teacher_list_view.dart'
     as _i8;
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -58,6 +60,9 @@ class AppRouter extends _i1.RootStackRouter {
     },
     HomeworkRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i10.HomeworkView());
+    },
+    AddHomeworkRoute.name: (entry) {
+      return _i1.AdaptivePage(entry: entry, child: _i11.AddHomeworkView());
     }
   };
 
@@ -71,7 +76,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ScheduleRoute.name, path: '/schedule'),
         _i1.RouteConfig(TeacherListRoute.name, path: '/teacher-list'),
         _i1.RouteConfig(LoginRoute.name, path: '/login'),
-        _i1.RouteConfig(HomeworkRoute.name, path: '/homework')
+        _i1.RouteConfig(HomeworkRoute.name, path: '/homework'),
+        _i1.RouteConfig(AddHomeworkRoute.name, path: '/add-homework')
       ];
 }
 
@@ -100,7 +106,7 @@ class MaterialCoveredRoute extends _i1.PageRouteInfo {
 }
 
 class TeacherInfoRoute extends _i1.PageRouteInfo<TeacherInfoRouteArgs> {
-  TeacherInfoRoute({_i11.Key key, String id})
+  TeacherInfoRoute({_i12.Key key, String id})
       : super(name,
             path: '/teacher/:id',
             args: TeacherInfoRouteArgs(key: key, id: id),
@@ -112,7 +118,7 @@ class TeacherInfoRoute extends _i1.PageRouteInfo<TeacherInfoRouteArgs> {
 class TeacherInfoRouteArgs {
   const TeacherInfoRouteArgs({this.key, this.id});
 
-  final _i11.Key key;
+  final _i12.Key key;
 
   final String id;
 }
@@ -139,4 +145,10 @@ class HomeworkRoute extends _i1.PageRouteInfo {
   const HomeworkRoute() : super(name, path: '/homework');
 
   static const String name = 'HomeworkRoute';
+}
+
+class AddHomeworkRoute extends _i1.PageRouteInfo {
+  const AddHomeworkRoute() : super(name, path: '/add-homework');
+
+  static const String name = 'AddHomeworkRoute';
 }

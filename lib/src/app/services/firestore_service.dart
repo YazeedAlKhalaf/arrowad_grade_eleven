@@ -1,4 +1,5 @@
 import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
+import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
@@ -121,6 +122,26 @@ class FirestoreService {
       });
 
       return homeworkList;
+    } catch (exception) {
+      return ErrorService.handleFirestoreExceptions(exception);
+    }
+  }
+
+  Future<dynamic> addNewHomework({
+    @required String name,
+  }) async {
+    try {
+      final DocumentReference documentReference = _homeworkCollection.doc();
+      final KHomework homework = KHomework(
+        id: documentReference.id,
+        name: name,
+        homeworkItems: <KHomeworkItem>[],
+        createdAt: Timestamp.now(),
+      );
+
+      await documentReference.set(
+        homework.toMap(),
+      );
     } catch (exception) {
       return ErrorService.handleFirestoreExceptions(exception);
     }

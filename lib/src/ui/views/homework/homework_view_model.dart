@@ -1,3 +1,5 @@
+import 'package:arrowad_grade_eleven/src/app/router/router.dart';
+import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
@@ -9,6 +11,7 @@ import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
 
 class HomeworkViewModel extends CustomBaseViewModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
+  final RouterService _routerService = locator<RouterService>();
 
   BuildContext _context;
   BuildContext get context => _context;
@@ -43,5 +46,11 @@ class HomeworkViewModel extends CustomBaseViewModel {
     }
 
     setHomeworkList(response);
+  }
+
+  Future<void> navigateToAddHomeworkView() async {
+    await _routerService.appRouter.push(
+      AddHomeworkRoute(),
+    );
   }
 }

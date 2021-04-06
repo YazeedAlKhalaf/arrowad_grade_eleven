@@ -1,3 +1,4 @@
+import 'package:arrowad_grade_eleven/src/ui/views/add_homework/add_homework_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/home/home_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/homework/homework_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/login/login_view.dart';
@@ -23,6 +24,7 @@ export './router.gr.dart';
     AutoRoute(page: TeacherListView, path: "/teacher-list"),
     AutoRoute(page: LoginView, path: "/login"),
     AutoRoute(page: HomeworkView, path: "/homework"),
+    AutoRoute(page: AddHomeworkView, path: "/add-homework"),
   ],
 )
 class $AppRouter {}
