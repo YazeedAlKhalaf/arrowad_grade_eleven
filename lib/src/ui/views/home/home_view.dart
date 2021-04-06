@@ -196,7 +196,7 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 150,
+                      height: 160,
                       child: ListView.builder(
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
@@ -217,11 +217,20 @@ class HomeView extends StatelessWidget {
                               padding: const EdgeInsets.all(10),
                               child: Column(
                                 children: <Widget>[
-                                  CircleAvatar(
-                                    radius: 40,
-                                    backgroundImage: NetworkImage(
-                                      teacher.photoUrl,
-                                    ),
+                                  Stack(
+                                    alignment: Alignment.center,
+                                    children: <Widget>[
+                                      CircleAvatar(
+                                        radius: 45,
+                                        backgroundColor: KColors.green,
+                                      ),
+                                      CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: NetworkImage(
+                                          teacher.photoUrl,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
@@ -231,6 +240,7 @@ class HomeView extends StatelessWidget {
                                       fontSize: 16,
                                     ),
                                     textAlign: TextAlign.center,
+                                    maxLines: 2,
                                   ),
                                 ],
                               ),
