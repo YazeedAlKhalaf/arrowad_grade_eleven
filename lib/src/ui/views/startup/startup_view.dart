@@ -18,10 +18,13 @@ class StartupView extends StatelessWidget {
       ) {
         return Scaffold(
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                "assets/logo.jpg",
-                width: 150,
+              ClipOval(
+                child: Image.asset(
+                  "assets/logo.jpg",
+                  width: 150,
+                ),
               ),
               const SizedBox(height: 20),
               Center(
