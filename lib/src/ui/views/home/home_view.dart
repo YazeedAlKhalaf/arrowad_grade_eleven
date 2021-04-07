@@ -82,7 +82,7 @@ class HomeView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         side: BorderSide(
                           color: KColors.orange,
-                          width: 2,
+                          width: 5,
                         ),
                       ),
                       child: Container(
@@ -100,7 +100,7 @@ class HomeView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 35),
+                            const SizedBox(height: 30),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -133,7 +133,7 @@ class HomeView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 15),
                             Padding(
                               padding: const EdgeInsets.all(5),
                               child: Row(
