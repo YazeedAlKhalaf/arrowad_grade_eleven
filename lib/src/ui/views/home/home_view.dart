@@ -312,12 +312,12 @@ class HomeView extends StatelessWidget {
                               await model.navigateToMaterialCoveredView();
                             },
                           ),
-                          CustomElevatedButton(
-                            text: "Tips",
-                            iconPath: "assets/icons/tips_icon.png",
-                            color: KColors.yellow,
-                            onTap: () {},
-                          ),
+                          // CustomElevatedButton(
+                          //   text: "Tips",
+                          //   iconPath: "assets/icons/tips_icon.png",
+                          //   color: KColors.yellow,
+                          //   onTap: () {},
+                          // ),
                         ],
                       ),
                     ),
