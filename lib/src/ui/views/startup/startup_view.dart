@@ -17,8 +17,15 @@ class StartupView extends StatelessWidget {
         Widget child,
       ) {
         return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
+          body: Column(
+            children: <Widget>[
+              Image.asset(
+                "assets/logo.jpg",
+              ),
+              Center(
+                child: CircularProgressIndicator(),
+              ),
+            ],
           ),
         );
       },
