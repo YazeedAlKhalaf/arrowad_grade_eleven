@@ -68,72 +68,72 @@ class HomeView extends StatelessWidget {
         Widget _buildWhatsForTomorrow() {
           return Padding(
             padding: const EdgeInsets.all(15),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(
-                        color: KColors.orange,
-                        width: 2,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () async {
+                await model.navigateToHomeworkView();
+              },
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        side: BorderSide(
+                          color: KColors.orange,
+                          width: 2,
+                        ),
                       ),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(25),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Text(
-                                "Homework",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                      child: Container(
+                        padding: const EdgeInsets.all(25),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  "Homework",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 35),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Icon(
-                                Icons.edit,
-                                color: KColors.orange,
-                                size: 75,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    "English",
-                                    style: TextStyle(
-                                      color: KColors.orange,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                              ],
+                            ),
+                            const SizedBox(height: 35),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.edit,
+                                  color: KColors.orange,
+                                  size: 75,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "English",
+                                      style: TextStyle(
+                                        color: KColors.orange,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Sunday | 18 Apr",
-                                    style: TextStyle(
-                                      color: KColors.orange,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                    Text(
+                                      "Sunday | 18 Apr",
+                                      style: TextStyle(
+                                        color: KColors.orange,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          InkWell(
-                            borderRadius: BorderRadius.circular(50),
-                            onTap: () async {
-                              await model.navigateToHomeworkView();
-                            },
-                            child: Padding(
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Padding(
                               padding: const EdgeInsets.all(5),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -150,13 +150,13 @@ class HomeView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }
