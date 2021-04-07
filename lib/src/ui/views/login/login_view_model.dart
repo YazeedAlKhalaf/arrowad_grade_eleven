@@ -1,5 +1,6 @@
 import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
 import 'package:arrowad_grade_eleven/src/app/router/router.dart';
+import 'package:arrowad_grade_eleven/src/app/services/firebase_messaging_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/utils.dart';
 import 'package:arrowad_grade_eleven/src/ui/widgets/veritifcation_ui.dart';
@@ -15,6 +16,8 @@ import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 class LoginViewModel extends CustomBaseViewModel {
   final AuthService _authService = locator<AuthService>();
   final RouterService _routerService = locator<RouterService>();
+  final FirebaseMessagingService _firebaseMessagingService =
+      locator<FirebaseMessagingService>();
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
@@ -111,6 +114,7 @@ class LoginViewModel extends CustomBaseViewModel {
           );
         },
       );
+      await _firebaseMessagingService.initialize();
       setBusy(false);
     } else {
       setAutoValidate(true);

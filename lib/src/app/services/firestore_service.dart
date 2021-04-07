@@ -1,3 +1,4 @@
+import 'package:arrowad_grade_eleven/src/app/models/k_push_notification_token.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -25,6 +26,9 @@ class FirestoreService {
   );
   final CollectionReference _homeworkCollection = _firebaseFirestore.collection(
     Constants.homeworkCollectionName,
+  );
+  final CollectionReference _tokensCollection = _firebaseFirestore.collection(
+    Constants.tokensCollectionName,
   );
 
   /// create user with provided user model
@@ -217,5 +221,20 @@ class FirestoreService {
     } catch (exception) {
       return ErrorService.handleFirestoreExceptions(exception);
     }
+  }
+
+  Future<void> savePushNotificationToken({
+    @required KPushNotificationToken pushNotificationToken,
+    @required KUser currentUser,
+  }) async {
+    await _tokensCollection
+        .doc(pushNotificationToken.token)
+        .set(pushNotificationToken.toMap());
+  }
+
+  Future<void> deleteDeviceId({
+    @required String deviceId,
+  }) async {
+    await _tokensCollection.doc(deviceId).delete();
   }
 }

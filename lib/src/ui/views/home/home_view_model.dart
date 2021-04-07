@@ -1,18 +1,22 @@
+import 'package:flutter/material.dart';
+
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/router/router.gr.dart';
 import 'package:arrowad_grade_eleven/src/app/services/auth_service.dart';
+import 'package:arrowad_grade_eleven/src/app/services/firebase_messaging_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/firestore_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
-import 'package:flutter/cupertino.dart';
 
 class HomeViewModel extends CustomBaseViewModel {
   final AuthService _authService = locator<AuthService>();
   final FirestoreService _firestoreService = locator<FirestoreService>();
   final RouterService _routerService = locator<RouterService>();
+  final FirebaseMessagingService _firebaseMessagingService =
+      locator<FirebaseMessagingService>();
 
   BuildContext _context;
   BuildContext get context => _context;
@@ -79,6 +83,10 @@ class HomeViewModel extends CustomBaseViewModel {
   }
 
   Future<void> signOut() async {
+    final String deviceId = await _firebaseMessagingService.getDeviceToken();
+    await _firestoreService.deleteDeviceId(
+      deviceId: deviceId,
+    );
     await _authService.signOut();
 
     await _routerService.appRouter.pushAndRemoveUntil(

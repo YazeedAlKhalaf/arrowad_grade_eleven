@@ -1,3 +1,4 @@
+import 'package:arrowad_grade_eleven/src/app/services/firebase_messaging_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +15,11 @@ import 'package:arrowad_grade_eleven/src/ui/widgets/veritifcation_ui.dart';
 
 class RegisterViewModel extends CustomBaseViewModel {
   final AuthService _authService = locator<AuthService>();
+  final RouterService _routerService = locator<RouterService>();
+  final FirebaseMessagingService _firebaseMessagingService =
+      locator<FirebaseMessagingService>();
 
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
-
-  final RouterService _routerService = locator<RouterService>();
 
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -124,6 +126,9 @@ class RegisterViewModel extends CustomBaseViewModel {
           );
         },
       );
+
+      await _firebaseMessagingService.initialize();
+
       setBusy(false);
     } else {
       setAutoValidate(true);
