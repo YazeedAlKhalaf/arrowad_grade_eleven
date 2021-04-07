@@ -21,7 +21,9 @@ class StartupView extends StatelessWidget {
             children: <Widget>[
               Image.asset(
                 "assets/logo.jpg",
+                width: 150,
               ),
+              const SizedBox(height: 20),
               Center(
                 child: CircularProgressIndicator(),
               ),
