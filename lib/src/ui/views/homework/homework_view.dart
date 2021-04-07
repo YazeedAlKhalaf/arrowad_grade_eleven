@@ -51,14 +51,16 @@ class HomeworkView extends StatelessWidget {
               },
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              await model.navigateToAddHomeworkView();
-            },
-            child: Icon(
-              FontAwesomeIcons.plus,
-            ),
-          ),
+          floatingActionButton: model.currentUser.isAdmin
+              ? FloatingActionButton(
+                  onPressed: () async {
+                    await model.navigateToAddHomeworkView();
+                  },
+                  child: Icon(
+                    FontAwesomeIcons.plus,
+                  ),
+                )
+              : null,
         );
       },
     );
