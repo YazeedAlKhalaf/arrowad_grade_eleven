@@ -3,6 +3,7 @@ import 'package:arrowad_grade_eleven/src/app/core/validators/phone_number_valida
 import 'package:arrowad_grade_eleven/src/app/core/validators/s_number_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 
 import './register_view_model.dart';
@@ -90,9 +91,11 @@ class RegisterView extends StatelessWidget {
                               labelText: "S-Number",
                               prefixText: "S",
                             ),
+                            maxLength: 6,
                             validator: (String sNumber) {
                               return validateSNumber(sNumber);
                             },
+                            keyboardType: TextInputType.number,
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
@@ -106,6 +109,7 @@ class RegisterView extends StatelessWidget {
                             validator: (String phoneNumber) {
                               return validatePhoneNumber(phoneNumber);
                             },
+                            keyboardType: TextInputType.number,
                           ),
                           const SizedBox(height: 20),
                           Row(

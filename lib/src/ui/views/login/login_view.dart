@@ -57,6 +57,7 @@ class LoginView extends StatelessWidget {
                             validator: (String phoneNumber) {
                               return validatePhoneNumber(phoneNumber);
                             },
+                            keyboardType: TextInputType.number,
                           ),
                           const SizedBox(height: 20),
                           Row(
