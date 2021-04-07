@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.alkhalaf.arrowad_grade_eleven">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="AIS Buddy"
         android:requestLegacyExternalStorage="true"
