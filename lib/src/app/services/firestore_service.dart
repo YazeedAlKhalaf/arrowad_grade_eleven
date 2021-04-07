@@ -135,13 +135,38 @@ class FirestoreService {
       final KHomework homework = KHomework(
         id: documentReference.id,
         name: name,
-        homeworkItems: <KHomeworkItem>[],
         createdAt: Timestamp.now(),
       );
 
       await documentReference.set(
         homework.toMap(),
       );
+    } catch (exception) {
+      return ErrorService.handleFirestoreExceptions(exception);
+    }
+  }
+
+  Future<dynamic> getAllHomeworkItems({
+    @required String homeworkId,
+  }) async {
+    try {
+      final QuerySnapshot querySnapshot = await _homeworkCollection
+          .doc(homeworkId)
+          .collection(Constants.homeworkItemsCollectionName)
+          .orderBy("createdAt", descending: true)
+          .get();
+
+      final List<KHomeworkItem> homeworkItems = <KHomeworkItem>[];
+
+      querySnapshot.docs.forEach((QueryDocumentSnapshot queryDocumentSnapshot) {
+        homeworkItems.add(
+          KHomeworkItem.fromMap(
+            queryDocumentSnapshot.data(),
+          ),
+        );
+      });
+
+      return homeworkItems;
     } catch (exception) {
       return ErrorService.handleFirestoreExceptions(exception);
     }
