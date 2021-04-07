@@ -38,6 +38,13 @@ dev_dependencies:
   auto_route_generator: ^1.0.2
   injectable_generator: ^1.2.2
 
+  flutter_launcher_icons: ^0.9.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.jpg"
+
 flutter:
   uses-material-design: true
 
