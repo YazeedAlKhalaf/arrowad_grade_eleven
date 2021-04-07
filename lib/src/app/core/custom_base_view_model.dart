@@ -20,4 +20,20 @@ abstract class CustomBaseViewModel extends BaseViewModel {
   void removeFocus() {
     FocusManager.instance.primaryFocus.unfocus();
   }
+
+  List<String> subjects = <String>[
+    "english",
+    "biology",
+    "chemistry",
+    "arabic",
+    "physics",
+    "math",
+    "french",
+    "adv arabic",
+    "quran",
+    "islamic",
+    "world history",
+    "ksa history",
+    "pe",
+  ];
 }

@@ -1,6 +1,7 @@
 import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:stacked/stacked.dart';
 
@@ -114,6 +115,18 @@ class HomeworkItemsView extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
           ),
+          floatingActionButton: model.currentUser.isAdmin
+              ? FloatingActionButton(
+                  child: Icon(
+                    FontAwesomeIcons.plus,
+                  ),
+                  onPressed: () async {
+                    await model.navigateToAddHomeworkItemView(
+                      homeworkId: homework.id,
+                    );
+                  },
+                )
+              : null,
         );
       },
     );

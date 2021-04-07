@@ -70,4 +70,14 @@ class HomeworkItemsViewModel extends CustomBaseViewModel {
       ),
     );
   }
+
+  Future<void> navigateToAddHomeworkItemView({
+    @required String homeworkId,
+  }) async {
+    await _routerService.appRouter.push(
+      AddHomeworkItemRoute(
+        homeworkId: homeworkId,
+      ),
+    );
+  }
 }

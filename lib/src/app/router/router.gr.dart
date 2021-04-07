@@ -4,11 +4,13 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart' as _i15;
+import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart' as _i16;
 import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart'
-    as _i16;
+    as _i17;
 import 'package:arrowad_grade_eleven/src/ui/views/add_homework/add_homework_view.dart'
     as _i11;
+import 'package:arrowad_grade_eleven/src/ui/views/add_homework_item/add_homework_item_view.dart'
+    as _i14;
 import 'package:arrowad_grade_eleven/src/ui/views/home/home_view.dart' as _i4;
 import 'package:arrowad_grade_eleven/src/ui/views/homework/homework_view.dart'
     as _i10;
@@ -30,7 +32,7 @@ import 'package:arrowad_grade_eleven/src/ui/views/teacher_info/teacher_info_view
 import 'package:arrowad_grade_eleven/src/ui/views/teacher_list/teacher_list_view.dart'
     as _i8;
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i14;
+import 'package:flutter/material.dart' as _i15;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -86,6 +88,14 @@ class AppRouter extends _i1.RootStackRouter {
           entry: entry,
           child: _i13.HomeworkItemInfoView(
               key: args.key, homeworkItem: args.homeworkItem));
+    },
+    AddHomeworkItemRoute.name: (entry) {
+      var args = entry.routeData.argsAs<AddHomeworkItemRouteArgs>(
+          orElse: () => AddHomeworkItemRouteArgs());
+      return _i1.AdaptivePage(
+          entry: entry,
+          child: _i14.AddHomeworkItemView(
+              key: args.key, homeworkId: args.homeworkId));
     }
   };
 
@@ -102,7 +112,9 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(HomeworkRoute.name, path: '/homework'),
         _i1.RouteConfig(AddHomeworkRoute.name, path: '/add-homework'),
         _i1.RouteConfig(HomeworkItemsRoute.name, path: '/homework-items'),
-        _i1.RouteConfig(HomeworkItemInfoRoute.name, path: '/homework-item-info')
+        _i1.RouteConfig(HomeworkItemInfoRoute.name,
+            path: '/homework-item-info'),
+        _i1.RouteConfig(AddHomeworkItemRoute.name, path: '/add-homework-item')
       ];
 }
 
@@ -131,7 +143,7 @@ class MaterialCoveredRoute extends _i1.PageRouteInfo {
 }
 
 class TeacherInfoRoute extends _i1.PageRouteInfo<TeacherInfoRouteArgs> {
-  TeacherInfoRoute({_i14.Key key, String id})
+  TeacherInfoRoute({_i15.Key key, String id})
       : super(name,
             path: '/teacher/:id',
             args: TeacherInfoRouteArgs(key: key, id: id),
@@ -143,7 +155,7 @@ class TeacherInfoRoute extends _i1.PageRouteInfo<TeacherInfoRouteArgs> {
 class TeacherInfoRouteArgs {
   const TeacherInfoRouteArgs({this.key, this.id});
 
-  final _i14.Key key;
+  final _i15.Key key;
 
   final String id;
 }
@@ -179,7 +191,7 @@ class AddHomeworkRoute extends _i1.PageRouteInfo {
 }
 
 class HomeworkItemsRoute extends _i1.PageRouteInfo<HomeworkItemsRouteArgs> {
-  HomeworkItemsRoute({_i14.Key key, _i15.KHomework homework})
+  HomeworkItemsRoute({_i15.Key key, _i16.KHomework homework})
       : super(name,
             path: '/homework-items',
             args: HomeworkItemsRouteArgs(key: key, homework: homework));
@@ -190,14 +202,14 @@ class HomeworkItemsRoute extends _i1.PageRouteInfo<HomeworkItemsRouteArgs> {
 class HomeworkItemsRouteArgs {
   const HomeworkItemsRouteArgs({this.key, this.homework});
 
-  final _i14.Key key;
+  final _i15.Key key;
 
-  final _i15.KHomework homework;
+  final _i16.KHomework homework;
 }
 
 class HomeworkItemInfoRoute
     extends _i1.PageRouteInfo<HomeworkItemInfoRouteArgs> {
-  HomeworkItemInfoRoute({_i14.Key key, _i16.KHomeworkItem homeworkItem})
+  HomeworkItemInfoRoute({_i15.Key key, _i17.KHomeworkItem homeworkItem})
       : super(name,
             path: '/homework-item-info',
             args: HomeworkItemInfoRouteArgs(
@@ -209,7 +221,24 @@ class HomeworkItemInfoRoute
 class HomeworkItemInfoRouteArgs {
   const HomeworkItemInfoRouteArgs({this.key, this.homeworkItem});
 
-  final _i14.Key key;
+  final _i15.Key key;
 
-  final _i16.KHomeworkItem homeworkItem;
+  final _i17.KHomeworkItem homeworkItem;
+}
+
+class AddHomeworkItemRoute extends _i1.PageRouteInfo<AddHomeworkItemRouteArgs> {
+  AddHomeworkItemRoute({_i15.Key key, String homeworkId})
+      : super(name,
+            path: '/add-homework-item',
+            args: AddHomeworkItemRouteArgs(key: key, homeworkId: homeworkId));
+
+  static const String name = 'AddHomeworkItemRoute';
+}
+
+class AddHomeworkItemRouteArgs {
+  const AddHomeworkItemRouteArgs({this.key, this.homeworkId});
+
+  final _i15.Key key;
+
+  final String homeworkId;
 }

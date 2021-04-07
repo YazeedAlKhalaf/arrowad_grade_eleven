@@ -1,10 +1,10 @@
-import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
-import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart';
-import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
+import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
+import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart';
+import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_user.dart';
 import 'package:arrowad_grade_eleven/src/app/services/error_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/constants.dart';
@@ -167,6 +167,36 @@ class FirestoreService {
       });
 
       return homeworkItems;
+    } catch (exception) {
+      return ErrorService.handleFirestoreExceptions(exception);
+    }
+  }
+
+  Future<dynamic> addNewHomeworkItem({
+    @required String homeworkId,
+    @required String name,
+    @required String description,
+    @required String subject,
+    @required String creatorId,
+  }) async {
+    try {
+      final DocumentReference documentReference = _homeworkCollection
+          .doc(homeworkId)
+          .collection(Constants.homeworkItemsCollectionName)
+          .doc();
+      final KHomeworkItem homeworkItem = KHomeworkItem(
+        id: documentReference.id,
+        name: name,
+        description: description,
+        creatorId: creatorId,
+        dueDate: DateTime.now(),
+        subject: subject,
+        createdAt: Timestamp.now(),
+      );
+
+      await documentReference.set(
+        homeworkItem.toMap(),
+      );
     } catch (exception) {
       return ErrorService.handleFirestoreExceptions(exception);
     }
