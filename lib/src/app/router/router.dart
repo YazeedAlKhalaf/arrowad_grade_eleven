@@ -1,5 +1,6 @@
 import 'package:arrowad_grade_eleven/src/ui/views/add_homework/add_homework_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/add_homework_item/add_homework_item_view.dart';
+import 'package:arrowad_grade_eleven/src/ui/views/edit_profile/edit_profile_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/home/home_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/homework/homework_view.dart';
 import 'package:arrowad_grade_eleven/src/ui/views/homework_item_info/homework_item_info_view.dart';
@@ -31,6 +32,7 @@ export './router.gr.dart';
     AutoRoute(page: HomeworkItemsView, path: "/homework-items"),
     AutoRoute(page: HomeworkItemInfoView, path: "/homework-item-info"),
     AutoRoute(page: AddHomeworkItemView, path: "/add-homework-item"),
+    AutoRoute(page: EditProfileView, path: "/edit-profile"),
   ],
 )
 class $AppRouter {}

@@ -328,6 +328,28 @@ class HomeView extends StatelessWidget {
           );
         }
 
+        Widget _buildTile({
+          @required String text,
+          @required IconData iconData,
+          Color color,
+          @required void Function() onTap,
+        }) {
+          return ListTile(
+            leading: Icon(
+              iconData,
+              color: color ?? null,
+            ),
+            title: Text(
+              text,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: onTap,
+          );
+        }
+
         Widget _buildDrawer() {
           return Drawer(
             child: Column(
@@ -352,18 +374,17 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                 ),
-                ListTile(
-                  leading: Icon(
-                    FontAwesomeIcons.signOutAlt,
-                    color: Colors.red,
-                  ),
-                  title: Text(
-                    "Sign Out",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                _buildTile(
+                  text: "Edit Profile",
+                  iconData: FontAwesomeIcons.userEdit,
+                  onTap: () async {
+                    await model.navigateToEditProfileView();
+                  },
+                ),
+                _buildTile(
+                  text: "Sign Out",
+                  iconData: FontAwesomeIcons.signOutAlt,
+                  color: Colors.red,
                   onTap: () async {
                     await model.signOut();
                   },

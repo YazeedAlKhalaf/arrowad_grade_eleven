@@ -2,6 +2,7 @@
     package="dev.alkhalaf.arrowad_grade_eleven">
    <application
         android:label="arrowad_grade_eleven"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

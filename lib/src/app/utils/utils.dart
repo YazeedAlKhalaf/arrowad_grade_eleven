@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
@@ -39,5 +42,13 @@ class Utils {
   }) async {
     final String launchablePhoneNumber = "https://wa.me/$phoneNumber";
     await url_launcher.launch(launchablePhoneNumber);
+  }
+
+  static Future<File> pickImage() async {
+    final PickedFile pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+
+    return File(pickedFile.path);
   }
 }

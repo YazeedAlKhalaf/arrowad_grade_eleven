@@ -92,4 +92,11 @@ class HomeViewModel extends CustomBaseViewModel {
       HomeworkRoute(),
     );
   }
+
+  Future<void> navigateToEditProfileView() async {
+    await goBack();
+    await _routerService.appRouter.push(
+      EditProfileRoute(),
+    );
+  }
 }
