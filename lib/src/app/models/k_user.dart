@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 
 class KUser {
@@ -15,6 +16,8 @@ class KUser {
 
   /// a letter indicating the batch the student is in.
   final String batch;
+  final bool isAdmin;
+  final Timestamp createdAt;
 
   const KUser({
     @required this.id,
@@ -25,6 +28,8 @@ class KUser {
     @required this.photoUrl,
     @required this.section,
     @required this.batch,
+    @required this.isAdmin,
+    @required this.createdAt,
   });
 
   KUser copyWith({
@@ -36,6 +41,8 @@ class KUser {
     String photoUrl,
     String section,
     String batch,
+    bool isAdmin,
+    Timestamp createdAt,
   }) {
     return KUser(
       id: id ?? this.id,
@@ -46,6 +53,8 @@ class KUser {
       photoUrl: photoUrl ?? this.photoUrl,
       section: section ?? this.section,
       batch: batch ?? this.batch,
+      isAdmin: isAdmin ?? this.isAdmin,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -59,6 +68,8 @@ class KUser {
       'photoUrl': photoUrl,
       'section': section,
       'batch': batch,
+      'isAdmin': isAdmin,
+      'createdAt': createdAt,
     };
   }
 
@@ -72,6 +83,8 @@ class KUser {
       photoUrl: map['photoUrl'],
       section: map['section'],
       batch: map['batch'],
+      isAdmin: map['isAdmin'],
+      createdAt: map['createdAt'],
     );
   }
 
@@ -81,7 +94,7 @@ class KUser {
 
   @override
   String toString() {
-    return 'KUser(id: $id, firstName: $firstName, lastName: $lastName, sNumber: $sNumber, phoneNumber: $phoneNumber, photoUrl: $photoUrl, section: $section, batch: $batch)';
+    return 'KUser(id: $id, firstName: $firstName, lastName: $lastName, sNumber: $sNumber, phoneNumber: $phoneNumber, photoUrl: $photoUrl, section: $section, batch: $batch, isAdmin: $isAdmin, createdAt: $createdAt)';
   }
 
   @override
@@ -96,7 +109,9 @@ class KUser {
         other.phoneNumber == phoneNumber &&
         other.photoUrl == photoUrl &&
         other.section == section &&
-        other.batch == batch;
+        other.batch == batch &&
+        other.isAdmin == isAdmin &&
+        other.createdAt == createdAt;
   }
 
   @override
@@ -108,6 +123,8 @@ class KUser {
         phoneNumber.hashCode ^
         photoUrl.hashCode ^
         section.hashCode ^
-        batch.hashCode;
+        batch.hashCode ^
+        isAdmin.hashCode ^
+        createdAt.hashCode;
   }
 }

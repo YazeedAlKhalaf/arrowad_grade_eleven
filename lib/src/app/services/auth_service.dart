@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
-import 'package:arrowad_grade_eleven/src/app/models/k_user.model.dart';
+import 'package:arrowad_grade_eleven/src/app/models/k_user.dart';
 import 'package:arrowad_grade_eleven/src/app/router/router.dart';
 import 'package:arrowad_grade_eleven/src/app/services/error_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/firestore_service.dart';
@@ -143,6 +144,8 @@ class AuthService {
       photoUrl: null,
       section: "boys",
       batch: "f",
+      isAdmin: false,
+      createdAt: Timestamp.now(),
     );
     await _firestoreService.createUser(
       user: currentUser,

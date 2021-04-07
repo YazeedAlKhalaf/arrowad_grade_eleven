@@ -1,5 +1,5 @@
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
-import 'package:arrowad_grade_eleven/src/app/models/k_user.model.dart';
+import 'package:arrowad_grade_eleven/src/app/models/k_user.dart';
 import 'package:arrowad_grade_eleven/src/app/services/auth_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';

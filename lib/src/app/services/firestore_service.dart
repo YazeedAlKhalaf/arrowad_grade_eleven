@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-import 'package:arrowad_grade_eleven/src/app/models/k_user.model.dart';
+import 'package:arrowad_grade_eleven/src/app/models/k_user.dart';
 import 'package:arrowad_grade_eleven/src/app/services/error_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/constants.dart';
 
