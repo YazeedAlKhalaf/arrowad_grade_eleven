@@ -87,7 +87,7 @@ class HomeworkItemsView extends StatelessWidget {
                                     : homeworkItem.description,
                               ),
                               Text(
-                                "Due on: ${intl.DateFormat("dd MMM, yyyy").format(homeworkItem.dueDate)}",
+                                "Due on: ${intl.DateFormat("dd MMM").format(homeworkItem.dueDate)}",
                                 style: TextStyle(
                                   color: KColors.orange,
                                   fontWeight: FontWeight.bold,
