@@ -1,15 +1,12 @@
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
-import 'package:arrowad_grade_eleven/src/app/router/router.dart';
 import 'package:arrowad_grade_eleven/src/app/services/firestore_service.dart';
-import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
 import 'package:flutter/cupertino.dart';
 
 class AddHomeworkViewModel extends CustomBaseViewModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
-  final RouterService _routerService = locator<RouterService>();
 
   final GlobalKey<FormState> addHomeworkFormKey = GlobalKey<FormState>();
 
