@@ -54,7 +54,6 @@ class HomeView extends StatelessWidget {
                 Text(
                   "Welcome ${model.currentUser.firstName},",
                   style: TextStyle(
-                    color: KColors.blackBlue,
                     fontFamily: "Agency FB",
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
