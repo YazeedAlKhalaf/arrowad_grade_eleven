@@ -82,7 +82,6 @@ class AddHomeworkItemViewModel extends CustomBaseViewModel {
         message: "Homework item added successfully!",
       );
 
-      // await navigateToHomeView();
       goBack();
 
       setBusy(false);
@@ -93,12 +92,5 @@ class AddHomeworkItemViewModel extends CustomBaseViewModel {
         message: "Check the info you provided above!",
       );
     }
-  }
-
-  Future<void> navigateToHomeView() async {
-    await _routerService.appRouter.pushAndRemoveUntil(
-      HomeRoute(),
-      predicate: (_) => false,
-    );
   }
 }

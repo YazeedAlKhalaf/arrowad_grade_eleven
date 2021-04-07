@@ -55,10 +55,10 @@ class AddHomeworkViewModel extends CustomBaseViewModel {
 
       FlashHelper.successBar(
         context,
-        message: "Home added successfully!",
+        message: "Homework added successfully!",
       );
 
-      await navigateToHomeView();
+      goBack();
 
       setBusy(false);
     } else {
@@ -68,12 +68,5 @@ class AddHomeworkViewModel extends CustomBaseViewModel {
         message: "Check the info you provided above!",
       );
     }
-  }
-
-  Future<void> navigateToHomeView() async {
-    await _routerService.appRouter.pushAndRemoveUntil(
-      HomeRoute(),
-      predicate: (_) => false,
-    );
   }
 }

@@ -29,26 +29,35 @@ class HomeworkView extends StatelessWidget {
             ),
           ),
           body: SafeArea(
-            child: ListView.builder(
-              itemCount: model.homeworkList.length,
-              itemBuilder: (BuildContext context, int index) {
-                final KHomework homework = model.homeworkList[index];
-                final DateTime homeworkCreatedAt = homework.createdAt.toDate();
-
-                return ListTile(
-                  title: Text(
-                    homework.name,
-                  ),
-                  subtitle: Text(
-                    "${intl.DateFormat("dd MMM, yyyy").format(homeworkCreatedAt)}",
-                  ),
-                  onTap: () async {
-                    await model.navigateToHomeworkItemsView(
-                      homework: homework,
-                    );
-                  },
-                );
+            child: RefreshIndicator(
+              onRefresh: () async {
+                await model.getAllHomework();
               },
+              child: ListView.builder(
+                itemCount: model.homeworkList.length,
+                physics: AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  final KHomework homework = model.homeworkList[index];
+                  final DateTime homeworkCreatedAt =
+                      homework.createdAt.toDate();
+
+                  return ListTile(
+                    title: Text(
+                      homework.name,
+                    ),
+                    subtitle: Text(
+                      "${intl.DateFormat("dd MMM, yyyy").format(homeworkCreatedAt)}",
+                    ),
+                    onTap: () async {
+                      await model.navigateToHomeworkItemsView(
+                        homework: homework,
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
           floatingActionButton: model.currentUser.isAdmin
