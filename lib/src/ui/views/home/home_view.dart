@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
+import 'package:intl/intl.dart' as intl;
 
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
@@ -64,7 +65,7 @@ class HomeView extends StatelessWidget {
           );
         }
 
-        Widget _buildWhatsForTomorrow() {
+        Widget _buildHomework() {
           return Padding(
             padding: const EdgeInsets.all(15),
             child: InkWell(
@@ -101,10 +102,10 @@ class HomeView extends StatelessWidget {
                             ),
                             const SizedBox(height: 35),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Icon(
-                                  Icons.edit,
+                                  FontAwesomeIcons.home,
                                   color: KColors.orange,
                                   size: 75,
                                 ),
@@ -112,7 +113,7 @@ class HomeView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      "English",
+                                      "Life is a blanket!",
                                       style: TextStyle(
                                         color: KColors.orange,
                                         fontSize: 20,
@@ -120,7 +121,8 @@ class HomeView extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Sunday | 18 Apr",
+                                      intl.DateFormat("dd MMM,yyyy")
+                                          .format(DateTime.now()),
                                       style: TextStyle(
                                         color: KColors.orange,
                                         fontSize: 20,
@@ -386,7 +388,7 @@ class HomeView extends StatelessWidget {
                   children: <Widget>[
                     _buildDrawerRow(),
                     _buildNameRow(),
-                    _buildWhatsForTomorrow(),
+                    _buildHomework(),
                     const SizedBox(height: 10),
                     _buildTeachers(),
                     const SizedBox(height: 10),
