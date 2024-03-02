@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import './material_covered_view_model.dart';
 
+@RoutePage()
 class MaterialCoveredView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class MaterialCoveredView extends StatelessWidget {
       builder: (
         BuildContext context,
         MaterialCoveredViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           appBar: AppBar(

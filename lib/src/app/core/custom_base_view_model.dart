@@ -10,15 +10,15 @@ abstract class CustomBaseViewModel extends BaseViewModel {
   final AuthService _authService = locator<AuthService>();
   final RouterService _routerService = locator<RouterService>();
 
-  KUser get currentUser => _authService.currentUser;
-  User get currentFirebaseUser => _authService.currentFirebaseUser;
+  KUser? get currentUser => _authService.currentUser;
+  User? get currentFirebaseUser => _authService.currentFirebaseUser;
 
   Future<void> goBack() async {
     await _routerService.appRouter.pop();
   }
 
   void removeFocus() {
-    FocusManager.instance.primaryFocus.unfocus();
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 
   List<String> subjects = <String>[

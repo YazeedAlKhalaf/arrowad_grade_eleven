@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class Utils {
   static String formatPhoneNumber({
-    @required String phoneNumber,
+    required String phoneNumber,
   }) {
     String phoneNumberFormatted = phoneNumber;
     if (phoneNumber.startsWith("009665")) {
@@ -31,23 +30,26 @@ class Utils {
   }
 
   static Future<void> launchPhoneNumber({
-    @required String phoneNumber,
+    required String phoneNumber,
   }) async {
     final String launchablePhoneNumber = "tel:$phoneNumber";
     await url_launcher.launch(launchablePhoneNumber);
   }
 
   static Future<void> launchPhoneNumberInWhatsapp({
-    @required String phoneNumber,
+    required String phoneNumber,
   }) async {
     final String launchablePhoneNumber = "https://wa.me/$phoneNumber";
     await url_launcher.launch(launchablePhoneNumber);
   }
 
-  static Future<File> pickImage() async {
-    final PickedFile pickedFile = await ImagePicker().getImage(
+  static Future<File?> pickImage() async {
+    final XFile? pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
+    if (pickedFile == null) {
+      return null;
+    }
 
     return File(pickedFile.path);
   }

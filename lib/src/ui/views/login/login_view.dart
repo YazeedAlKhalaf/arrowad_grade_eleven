@@ -1,10 +1,12 @@
 import 'package:arrowad_grade_eleven/src/app/core/validators/phone_number_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import './login_view_model.dart';
 
+@RoutePage()
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

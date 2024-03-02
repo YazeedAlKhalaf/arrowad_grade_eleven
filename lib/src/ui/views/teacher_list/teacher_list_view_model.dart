@@ -28,7 +28,7 @@ class TeacherListViewModel extends CustomBaseViewModel {
   }
 
   Future<void> init({
-    @required BuildContext context,
+    required BuildContext context,
   }) async {
     setContext(context);
 
@@ -50,7 +50,7 @@ class TeacherListViewModel extends CustomBaseViewModel {
   }
 
   Future<void> navigateToTeacherView({
-    @required String teacherId,
+    required String teacherId,
   }) async {
     await _routerService.appRouter.push(
       TeacherInfoRoute(

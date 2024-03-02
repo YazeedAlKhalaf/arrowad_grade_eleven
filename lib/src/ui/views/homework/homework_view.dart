@@ -1,12 +1,13 @@
+import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:stacked/stacked.dart';
 
-import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
-
 import './homework_view_model.dart';
 
+@RoutePage()
 class HomeworkView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,14 @@
 import 'package:arrowad_grade_eleven/src/app/core/validators/homework_name_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:arrowad_grade_eleven/src/ui/widgets/custom_elevated_button.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import './add_homework_view_model.dart';
 
+@RoutePage()
 class AddHomeworkView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class AddHomeworkView extends StatelessWidget {
       builder: (
         BuildContext context,
         AddHomeworkViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           appBar: AppBar(
@@ -51,8 +53,8 @@ class AddHomeworkView extends StatelessWidget {
                         ),
                         maxLength: 50,
                         maxLines: 1,
-                        validator: (String homeworkName) {
-                          return validateHomeworkName(homeworkName);
+                        validator: (String? homeworkName) {
+                          return validateHomeworkName(homeworkName ?? "");
                         },
                       ),
                       const SizedBox(height: 20),

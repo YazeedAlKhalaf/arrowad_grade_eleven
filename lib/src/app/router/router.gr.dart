@@ -1,256 +1,414 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
 
-import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart' as _i17;
-import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart'
-    as _i18;
-import 'package:arrowad_grade_eleven/src/ui/views/add_homework/add_homework_view.dart'
-    as _i11;
-import 'package:arrowad_grade_eleven/src/ui/views/add_homework_item/add_homework_item_view.dart'
-    as _i14;
-import 'package:arrowad_grade_eleven/src/ui/views/edit_profile/edit_profile_view.dart'
-    as _i15;
-import 'package:arrowad_grade_eleven/src/ui/views/home/home_view.dart' as _i4;
-import 'package:arrowad_grade_eleven/src/ui/views/homework/homework_view.dart'
-    as _i10;
-import 'package:arrowad_grade_eleven/src/ui/views/homework_item_info/homework_item_info_view.dart'
-    as _i13;
-import 'package:arrowad_grade_eleven/src/ui/views/homework_items/homework_items_view.dart'
-    as _i12;
-import 'package:arrowad_grade_eleven/src/ui/views/login/login_view.dart' as _i9;
-import 'package:arrowad_grade_eleven/src/ui/views/material_covered/material_covered_view.dart'
-    as _i5;
-import 'package:arrowad_grade_eleven/src/ui/views/register/register_view.dart'
-    as _i3;
-import 'package:arrowad_grade_eleven/src/ui/views/schedule/schedule_view.dart'
-    as _i7;
-import 'package:arrowad_grade_eleven/src/ui/views/startup/startup_view.dart'
-    as _i2;
-import 'package:arrowad_grade_eleven/src/ui/views/teacher_info/teacher_info_view.dart'
-    as _i6;
-import 'package:arrowad_grade_eleven/src/ui/views/teacher_list/teacher_list_view.dart'
-    as _i8;
-import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i16;
+// ignore_for_file: type=lint
+// coverage:ignore-file
 
-class AppRouter extends _i1.RootStackRouter {
-  AppRouter();
+part of 'router.dart';
+
+abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i1.PageFactory> pagesMap = {
-    StartupRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i2.StartupView());
+  final Map<String, PageFactory> pagesMap = {
+    AddHomeworkItemRoute.name: (routeData) {
+      final args = routeData.argsAs<AddHomeworkItemRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AddHomeworkItemView(
+          key: args.key,
+          homeworkId: args.homeworkId,
+        ),
+      );
     },
-    RegisterRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i3.RegisterView());
+    AddHomeworkRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AddHomeworkView(),
+      );
     },
-    HomeRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i4.HomeView());
+    EditProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditProfileView(),
+      );
     },
-    MaterialCoveredRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i5.MaterialCoveredView());
+    HomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: HomeView(),
+      );
     },
-    TeacherInfoRoute.name: (entry) {
-      var pathParams = entry.routeData.pathParams;
-      var args = entry.routeData.argsAs<TeacherInfoRouteArgs>(
+    HomeworkItemInfoRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeworkItemInfoRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: HomeworkItemInfoView(
+          key: args.key,
+          homeworkItem: args.homeworkItem,
+        ),
+      );
+    },
+    HomeworkItemsRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeworkItemsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: HomeworkItemsView(
+          key: args.key,
+          homework: args.homework,
+        ),
+      );
+    },
+    HomeworkRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: HomeworkView(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: LoginView(),
+      );
+    },
+    MaterialCoveredRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MaterialCoveredView(),
+      );
+    },
+    RegisterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RegisterView(),
+      );
+    },
+    ScheduleRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ScheduleView(),
+      );
+    },
+    StartupRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: StartupView(),
+      );
+    },
+    TeacherInfoRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TeacherInfoRouteArgs>(
           orElse: () => TeacherInfoRouteArgs(id: pathParams.getString('id')));
-      return _i1.AdaptivePage(
-          entry: entry, child: _i6.TeacherInfoView(key: args.key, id: args.id));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TeacherInfoView(
+          key: args.key,
+          id: args.id,
+        ),
+      );
     },
-    ScheduleRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i7.ScheduleView());
+    TeacherListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TeacherListView(),
+      );
     },
-    TeacherListRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i8.TeacherListView());
-    },
-    LoginRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i9.LoginView());
-    },
-    HomeworkRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i10.HomeworkView());
-    },
-    AddHomeworkRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i11.AddHomeworkView());
-    },
-    HomeworkItemsRoute.name: (entry) {
-      var args = entry.routeData.argsAs<HomeworkItemsRouteArgs>(
-          orElse: () => HomeworkItemsRouteArgs());
-      return _i1.AdaptivePage(
-          entry: entry,
-          child:
-              _i12.HomeworkItemsView(key: args.key, homework: args.homework));
-    },
-    HomeworkItemInfoRoute.name: (entry) {
-      var args = entry.routeData.argsAs<HomeworkItemInfoRouteArgs>(
-          orElse: () => HomeworkItemInfoRouteArgs());
-      return _i1.AdaptivePage(
-          entry: entry,
-          child: _i13.HomeworkItemInfoView(
-              key: args.key, homeworkItem: args.homeworkItem));
-    },
-    AddHomeworkItemRoute.name: (entry) {
-      var args = entry.routeData.argsAs<AddHomeworkItemRouteArgs>(
-          orElse: () => AddHomeworkItemRouteArgs());
-      return _i1.AdaptivePage(
-          entry: entry,
-          child: _i14.AddHomeworkItemView(
-              key: args.key, homeworkId: args.homeworkId));
-    },
-    EditProfileRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i15.EditProfileView());
-    }
   };
-
-  @override
-  List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(StartupRoute.name, path: '/'),
-        _i1.RouteConfig(RegisterRoute.name, path: '/register'),
-        _i1.RouteConfig(HomeRoute.name, path: '/home'),
-        _i1.RouteConfig(MaterialCoveredRoute.name, path: '/material-covered'),
-        _i1.RouteConfig(TeacherInfoRoute.name, path: '/teacher/:id'),
-        _i1.RouteConfig(ScheduleRoute.name, path: '/schedule'),
-        _i1.RouteConfig(TeacherListRoute.name, path: '/teacher-list'),
-        _i1.RouteConfig(LoginRoute.name, path: '/login'),
-        _i1.RouteConfig(HomeworkRoute.name, path: '/homework'),
-        _i1.RouteConfig(AddHomeworkRoute.name, path: '/add-homework'),
-        _i1.RouteConfig(HomeworkItemsRoute.name, path: '/homework-items'),
-        _i1.RouteConfig(HomeworkItemInfoRoute.name,
-            path: '/homework-item-info'),
-        _i1.RouteConfig(AddHomeworkItemRoute.name, path: '/add-homework-item'),
-        _i1.RouteConfig(EditProfileRoute.name, path: '/edit-profile')
-      ];
 }
 
-class StartupRoute extends _i1.PageRouteInfo {
-  const StartupRoute() : super(name, path: '/');
-
-  static const String name = 'StartupRoute';
-}
-
-class RegisterRoute extends _i1.PageRouteInfo {
-  const RegisterRoute() : super(name, path: '/register');
-
-  static const String name = 'RegisterRoute';
-}
-
-class HomeRoute extends _i1.PageRouteInfo {
-  const HomeRoute() : super(name, path: '/home');
-
-  static const String name = 'HomeRoute';
-}
-
-class MaterialCoveredRoute extends _i1.PageRouteInfo {
-  const MaterialCoveredRoute() : super(name, path: '/material-covered');
-
-  static const String name = 'MaterialCoveredRoute';
-}
-
-class TeacherInfoRoute extends _i1.PageRouteInfo<TeacherInfoRouteArgs> {
-  TeacherInfoRoute({_i16.Key key, String id})
-      : super(name,
-            path: '/teacher/:id',
-            args: TeacherInfoRouteArgs(key: key, id: id),
-            params: {'id': id});
-
-  static const String name = 'TeacherInfoRoute';
-}
-
-class TeacherInfoRouteArgs {
-  const TeacherInfoRouteArgs({this.key, this.id});
-
-  final _i16.Key key;
-
-  final String id;
-}
-
-class ScheduleRoute extends _i1.PageRouteInfo {
-  const ScheduleRoute() : super(name, path: '/schedule');
-
-  static const String name = 'ScheduleRoute';
-}
-
-class TeacherListRoute extends _i1.PageRouteInfo {
-  const TeacherListRoute() : super(name, path: '/teacher-list');
-
-  static const String name = 'TeacherListRoute';
-}
-
-class LoginRoute extends _i1.PageRouteInfo {
-  const LoginRoute() : super(name, path: '/login');
-
-  static const String name = 'LoginRoute';
-}
-
-class HomeworkRoute extends _i1.PageRouteInfo {
-  const HomeworkRoute() : super(name, path: '/homework');
-
-  static const String name = 'HomeworkRoute';
-}
-
-class AddHomeworkRoute extends _i1.PageRouteInfo {
-  const AddHomeworkRoute() : super(name, path: '/add-homework');
-
-  static const String name = 'AddHomeworkRoute';
-}
-
-class HomeworkItemsRoute extends _i1.PageRouteInfo<HomeworkItemsRouteArgs> {
-  HomeworkItemsRoute({_i16.Key key, _i17.KHomework homework})
-      : super(name,
-            path: '/homework-items',
-            args: HomeworkItemsRouteArgs(key: key, homework: homework));
-
-  static const String name = 'HomeworkItemsRoute';
-}
-
-class HomeworkItemsRouteArgs {
-  const HomeworkItemsRouteArgs({this.key, this.homework});
-
-  final _i16.Key key;
-
-  final _i17.KHomework homework;
-}
-
-class HomeworkItemInfoRoute
-    extends _i1.PageRouteInfo<HomeworkItemInfoRouteArgs> {
-  HomeworkItemInfoRoute({_i16.Key key, _i18.KHomeworkItem homeworkItem})
-      : super(name,
-            path: '/homework-item-info',
-            args: HomeworkItemInfoRouteArgs(
-                key: key, homeworkItem: homeworkItem));
-
-  static const String name = 'HomeworkItemInfoRoute';
-}
-
-class HomeworkItemInfoRouteArgs {
-  const HomeworkItemInfoRouteArgs({this.key, this.homeworkItem});
-
-  final _i16.Key key;
-
-  final _i18.KHomeworkItem homeworkItem;
-}
-
-class AddHomeworkItemRoute extends _i1.PageRouteInfo<AddHomeworkItemRouteArgs> {
-  AddHomeworkItemRoute({_i16.Key key, String homeworkId})
-      : super(name,
-            path: '/add-homework-item',
-            args: AddHomeworkItemRouteArgs(key: key, homeworkId: homeworkId));
+/// generated route for
+/// [AddHomeworkItemView]
+class AddHomeworkItemRoute extends PageRouteInfo<AddHomeworkItemRouteArgs> {
+  AddHomeworkItemRoute({
+    Key? key,
+    required String homeworkId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AddHomeworkItemRoute.name,
+          args: AddHomeworkItemRouteArgs(
+            key: key,
+            homeworkId: homeworkId,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'AddHomeworkItemRoute';
+
+  static const PageInfo<AddHomeworkItemRouteArgs> page =
+      PageInfo<AddHomeworkItemRouteArgs>(name);
 }
 
 class AddHomeworkItemRouteArgs {
-  const AddHomeworkItemRouteArgs({this.key, this.homeworkId});
+  const AddHomeworkItemRouteArgs({
+    this.key,
+    required this.homeworkId,
+  });
 
-  final _i16.Key key;
+  final Key? key;
 
   final String homeworkId;
+
+  @override
+  String toString() {
+    return 'AddHomeworkItemRouteArgs{key: $key, homeworkId: $homeworkId}';
+  }
 }
 
-class EditProfileRoute extends _i1.PageRouteInfo {
-  const EditProfileRoute() : super(name, path: '/edit-profile');
+/// generated route for
+/// [AddHomeworkView]
+class AddHomeworkRoute extends PageRouteInfo<void> {
+  const AddHomeworkRoute({List<PageRouteInfo>? children})
+      : super(
+          AddHomeworkRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddHomeworkRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditProfileView]
+class EditProfileRoute extends PageRouteInfo<void> {
+  const EditProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          EditProfileRoute.name,
+          initialChildren: children,
+        );
 
   static const String name = 'EditProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HomeView]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HomeworkItemInfoView]
+class HomeworkItemInfoRoute extends PageRouteInfo<HomeworkItemInfoRouteArgs> {
+  HomeworkItemInfoRoute({
+    Key? key,
+    required KHomeworkItem homeworkItem,
+    List<PageRouteInfo>? children,
+  }) : super(
+          HomeworkItemInfoRoute.name,
+          args: HomeworkItemInfoRouteArgs(
+            key: key,
+            homeworkItem: homeworkItem,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeworkItemInfoRoute';
+
+  static const PageInfo<HomeworkItemInfoRouteArgs> page =
+      PageInfo<HomeworkItemInfoRouteArgs>(name);
+}
+
+class HomeworkItemInfoRouteArgs {
+  const HomeworkItemInfoRouteArgs({
+    this.key,
+    required this.homeworkItem,
+  });
+
+  final Key? key;
+
+  final KHomeworkItem homeworkItem;
+
+  @override
+  String toString() {
+    return 'HomeworkItemInfoRouteArgs{key: $key, homeworkItem: $homeworkItem}';
+  }
+}
+
+/// generated route for
+/// [HomeworkItemsView]
+class HomeworkItemsRoute extends PageRouteInfo<HomeworkItemsRouteArgs> {
+  HomeworkItemsRoute({
+    Key? key,
+    required KHomework homework,
+    List<PageRouteInfo>? children,
+  }) : super(
+          HomeworkItemsRoute.name,
+          args: HomeworkItemsRouteArgs(
+            key: key,
+            homework: homework,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeworkItemsRoute';
+
+  static const PageInfo<HomeworkItemsRouteArgs> page =
+      PageInfo<HomeworkItemsRouteArgs>(name);
+}
+
+class HomeworkItemsRouteArgs {
+  const HomeworkItemsRouteArgs({
+    this.key,
+    required this.homework,
+  });
+
+  final Key? key;
+
+  final KHomework homework;
+
+  @override
+  String toString() {
+    return 'HomeworkItemsRouteArgs{key: $key, homework: $homework}';
+  }
+}
+
+/// generated route for
+/// [HomeworkView]
+class HomeworkRoute extends PageRouteInfo<void> {
+  const HomeworkRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeworkRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeworkRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LoginView]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute({List<PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MaterialCoveredView]
+class MaterialCoveredRoute extends PageRouteInfo<void> {
+  const MaterialCoveredRoute({List<PageRouteInfo>? children})
+      : super(
+          MaterialCoveredRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MaterialCoveredRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RegisterView]
+class RegisterRoute extends PageRouteInfo<void> {
+  const RegisterRoute({List<PageRouteInfo>? children})
+      : super(
+          RegisterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegisterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ScheduleView]
+class ScheduleRoute extends PageRouteInfo<void> {
+  const ScheduleRoute({List<PageRouteInfo>? children})
+      : super(
+          ScheduleRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ScheduleRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StartupView]
+class StartupRoute extends PageRouteInfo<void> {
+  const StartupRoute({List<PageRouteInfo>? children})
+      : super(
+          StartupRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StartupRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TeacherInfoView]
+class TeacherInfoRoute extends PageRouteInfo<TeacherInfoRouteArgs> {
+  TeacherInfoRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TeacherInfoRoute.name,
+          args: TeacherInfoRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'TeacherInfoRoute';
+
+  static const PageInfo<TeacherInfoRouteArgs> page =
+      PageInfo<TeacherInfoRouteArgs>(name);
+}
+
+class TeacherInfoRouteArgs {
+  const TeacherInfoRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'TeacherInfoRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [TeacherListView]
+class TeacherListRoute extends PageRouteInfo<void> {
+  const TeacherListRoute({List<PageRouteInfo>? children})
+      : super(
+          TeacherListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TeacherListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

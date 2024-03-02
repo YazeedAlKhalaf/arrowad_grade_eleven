@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
 
 class KUser {
   final String id;
@@ -9,7 +8,7 @@ class KUser {
   final String lastName;
   final String sNumber;
   final String phoneNumber;
-  final String photoUrl;
+  final String? photoUrl;
 
   /// boys or girls.
   final String section;
@@ -20,29 +19,29 @@ class KUser {
   final Timestamp createdAt;
 
   const KUser({
-    @required this.id,
-    @required this.firstName,
-    @required this.lastName,
-    @required this.sNumber,
-    @required this.phoneNumber,
-    @required this.photoUrl,
-    @required this.section,
-    @required this.batch,
-    @required this.isAdmin,
-    @required this.createdAt,
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.sNumber,
+    required this.phoneNumber,
+    required this.photoUrl,
+    required this.section,
+    required this.batch,
+    required this.isAdmin,
+    required this.createdAt,
   });
 
   KUser copyWith({
-    String id,
-    String firstName,
-    String lastName,
-    String sNumber,
-    String phoneNumber,
-    String photoUrl,
-    String section,
-    String batch,
-    bool isAdmin,
-    Timestamp createdAt,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? sNumber,
+    String? phoneNumber,
+    String? photoUrl,
+    String? section,
+    String? batch,
+    bool? isAdmin,
+    Timestamp? createdAt,
   }) {
     return KUser(
       id: id ?? this.id,

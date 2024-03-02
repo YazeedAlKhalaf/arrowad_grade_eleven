@@ -36,8 +36,8 @@ class HomeworkItemsViewModel extends CustomBaseViewModel {
   }
 
   Future<void> init({
-    @required BuildContext context,
-    @required KHomework homework,
+    required BuildContext context,
+    required KHomework homework,
   }) async {
     setContext(context);
     setHomework(homework);
@@ -62,7 +62,7 @@ class HomeworkItemsViewModel extends CustomBaseViewModel {
   }
 
   Future<void> navigateToHomeworkItemInfoView({
-    @required KHomeworkItem homeworkItem,
+    required KHomeworkItem homeworkItem,
   }) async {
     await _routerService.appRouter.push(
       HomeworkItemInfoRoute(
@@ -72,7 +72,7 @@ class HomeworkItemsViewModel extends CustomBaseViewModel {
   }
 
   Future<void> navigateToAddHomeworkItemView({
-    @required String homeworkId,
+    required String homeworkId,
   }) async {
     await _routerService.appRouter.push(
       AddHomeworkItemRoute(

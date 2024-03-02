@@ -1,4 +1,4 @@
-String validateHomeworkName(String homeworkName) {
+String? validateHomeworkName(String homeworkName) {
   final String homeworkNameTrimmed = homeworkName.trim();
 
   if (homeworkNameTrimmed.isEmpty) {

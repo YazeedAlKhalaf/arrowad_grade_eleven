@@ -24,8 +24,8 @@ class TeacherInfoViewModel extends CustomBaseViewModel {
   }
 
   Future<void> init({
-    @required BuildContext context,
-    @required String teacherId,
+    required BuildContext context,
+    required String teacherId,
   }) async {
     setContext(context);
 

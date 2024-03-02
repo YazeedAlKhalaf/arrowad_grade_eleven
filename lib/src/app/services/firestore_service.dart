@@ -1,40 +1,43 @@
-import 'package:arrowad_grade_eleven/src/app/models/k_push_notification_token.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
-
 import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart';
+import 'package:arrowad_grade_eleven/src/app/models/k_push_notification_token.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_user.dart';
 import 'package:arrowad_grade_eleven/src/app/services/error_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class FirestoreService {
   static final FirebaseFirestore _firebaseFirestore =
       FirebaseFirestore.instance;
 
-  final CollectionReference _usersCollection = _firebaseFirestore.collection(
+  final CollectionReference<Map<String, dynamic>> _usersCollection =
+      _firebaseFirestore.collection(
     Constants.usersCollectionName,
   );
-  final CollectionReference _setupCollection = _firebaseFirestore.collection(
+  final CollectionReference<Map<String, dynamic>> _setupCollection =
+      _firebaseFirestore.collection(
     Constants.setupCollectionName,
   );
-  final CollectionReference _teachersCollection = _firebaseFirestore.collection(
+  final CollectionReference<Map<String, dynamic>> _teachersCollection =
+      _firebaseFirestore.collection(
     Constants.teachersCollectionName,
   );
-  final CollectionReference _homeworkCollection = _firebaseFirestore.collection(
+  final CollectionReference<Map<String, dynamic>> _homeworkCollection =
+      _firebaseFirestore.collection(
     Constants.homeworkCollectionName,
   );
-  final CollectionReference _tokensCollection = _firebaseFirestore.collection(
+  final CollectionReference<Map<String, dynamic>> _tokensCollection =
+      _firebaseFirestore.collection(
     Constants.tokensCollectionName,
   );
 
   /// create user with provided user model
   /// may return error in case there is
   Future<dynamic> createUser({
-    @required KUser user,
+    required KUser user,
   }) async {
     try {
       await _usersCollection.doc(user.id).set(user.toMap());
@@ -47,12 +50,11 @@ class FirestoreService {
   /// get user with provided ID
   /// may return error in case there is
   Future<dynamic> getUser({
-    @required String userId,
+    required String userId,
   }) async {
     try {
-      final DocumentSnapshot documentSnapshot =
-          await _usersCollection.doc(userId).get();
-      final KUser user = KUser.fromMap(documentSnapshot.data());
+      final documentSnapshot = await _usersCollection.doc(userId).get();
+      final KUser user = KUser.fromMap(documentSnapshot.data() ?? {});
       print("Got user with data: ${user.toString()}");
 
       return user;
@@ -63,10 +65,10 @@ class FirestoreService {
 
   Future<dynamic> getPdfFileUrl() async {
     try {
-      final DocumentSnapshot documentSnapshot =
+      final documentSnapshot =
           await _setupCollection.doc("material_covered").get();
 
-      final String pdfFileUrl = documentSnapshot.data()["pdfFileUrl"];
+      final String pdfFileUrl = documentSnapshot.data()?["pdfFileUrl"];
 
       return pdfFileUrl;
     } catch (exception) {
@@ -76,11 +78,11 @@ class FirestoreService {
 
   Future<dynamic> getTeachers() async {
     try {
-      final QuerySnapshot querySnapshot = await _teachersCollection.get();
+      final querySnapshot = await _teachersCollection.get();
 
       final List<KTeacher> teacherList = <KTeacher>[];
 
-      querySnapshot.docs.forEach((QueryDocumentSnapshot queryDocumentSnapshot) {
+      querySnapshot.docs.forEach((queryDocumentSnapshot) {
         teacherList.add(
           KTeacher.fromMap(
             queryDocumentSnapshot.data(),
@@ -95,13 +97,12 @@ class FirestoreService {
   }
 
   Future<dynamic> getTeacherById({
-    @required String id,
+    required String id,
   }) async {
     try {
-      final DocumentSnapshot documentSnapshot =
-          await _teachersCollection.doc(id).get();
+      final documentSnapshot = await _teachersCollection.doc(id).get();
 
-      final KTeacher teacher = KTeacher.fromMap(documentSnapshot.data());
+      final KTeacher teacher = KTeacher.fromMap(documentSnapshot.data() ?? {});
 
       return teacher;
     } catch (exception) {
@@ -111,13 +112,13 @@ class FirestoreService {
 
   Future<dynamic> getAllHomework() async {
     try {
-      final QuerySnapshot querySnapshot = await _homeworkCollection
+      final querySnapshot = await _homeworkCollection
           .orderBy("createdAt", descending: true)
           .get();
 
       final List<KHomework> homeworkList = <KHomework>[];
 
-      querySnapshot.docs.forEach((QueryDocumentSnapshot queryDocumentSnapshot) {
+      querySnapshot.docs.forEach((queryDocumentSnapshot) {
         homeworkList.add(
           KHomework.fromMap(
             queryDocumentSnapshot.data(),
@@ -132,7 +133,7 @@ class FirestoreService {
   }
 
   Future<dynamic> addNewHomework({
-    @required String name,
+    required String name,
   }) async {
     try {
       final DocumentReference documentReference = _homeworkCollection.doc();
@@ -151,10 +152,10 @@ class FirestoreService {
   }
 
   Future<dynamic> getAllHomeworkItems({
-    @required String homeworkId,
+    required String homeworkId,
   }) async {
     try {
-      final QuerySnapshot querySnapshot = await _homeworkCollection
+      final querySnapshot = await _homeworkCollection
           .doc(homeworkId)
           .collection(Constants.homeworkItemsCollectionName)
           .orderBy("createdAt", descending: true)
@@ -162,7 +163,7 @@ class FirestoreService {
 
       final List<KHomeworkItem> homeworkItems = <KHomeworkItem>[];
 
-      querySnapshot.docs.forEach((QueryDocumentSnapshot queryDocumentSnapshot) {
+      querySnapshot.docs.forEach((queryDocumentSnapshot) {
         homeworkItems.add(
           KHomeworkItem.fromMap(
             queryDocumentSnapshot.data(),
@@ -177,11 +178,11 @@ class FirestoreService {
   }
 
   Future<dynamic> addNewHomeworkItem({
-    @required String homeworkId,
-    @required String name,
-    @required String description,
-    @required String subject,
-    @required String creatorId,
+    required String homeworkId,
+    required String name,
+    required String description,
+    required String subject,
+    required String creatorId,
   }) async {
     try {
       final DocumentReference documentReference = _homeworkCollection
@@ -207,10 +208,10 @@ class FirestoreService {
   }
 
   Future<dynamic> updateUser({
-    @required String userId,
-    @required String firstName,
-    @required String lastName,
-    @required String photoUrl,
+    required String userId,
+    required String firstName,
+    required String lastName,
+    required String photoUrl,
   }) async {
     try {
       await _usersCollection.doc(userId).update({
@@ -224,8 +225,8 @@ class FirestoreService {
   }
 
   Future<void> savePushNotificationToken({
-    @required KPushNotificationToken pushNotificationToken,
-    @required KUser currentUser,
+    required KPushNotificationToken pushNotificationToken,
+    required KUser currentUser,
   }) async {
     await _tokensCollection
         .doc(pushNotificationToken.token)
@@ -233,7 +234,7 @@ class FirestoreService {
   }
 
   Future<void> deleteDeviceId({
-    @required String deviceId,
+    required String deviceId,
   }) async {
     await _tokensCollection.doc(deviceId).delete();
   }

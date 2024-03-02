@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/utils.dart';
 import 'package:arrowad_grade_eleven/src/ui/widgets/custom_elevated_button.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import './edit_profile_view_model.dart';
 
+@RoutePage()
 class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class EditProfileView extends StatelessWidget {
       builder: (
         BuildContext context,
         EditProfileViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           appBar: AppBar(
@@ -47,23 +49,26 @@ class EditProfileView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         CircleAvatar(
+                          // backgroundImage: model.pickedImage != null
+                          //     ? FileImage(
+                          //         model.pickedImage!,
+                          //       )
+                          //     : NetworkImage(
+                          //         model.currentUser.photoUrl ??
+                          //             "https://firebasestorage.googleapis.com/v0/b/arrowad-grade-eleven.appspot.com/o/placeholder-person.jpg?alt=media&token=c4e35987-16f2-4d48-9f59-8a64dd60bcf6",
+                          //       ),
                           backgroundImage: model.pickedImage != null
                               ? FileImage(
-                                  model.pickedImage,
+                                  model.pickedImage!,
                                 )
-                              : NetworkImage(
-                                  model.currentUser.photoUrl ??
-                                      "https://firebasestorage.googleapis.com/v0/b/arrowad-grade-eleven.appspot.com/o/placeholder-person.jpg?alt=media&token=c4e35987-16f2-4d48-9f59-8a64dd60bcf6",
-                                ),
+                              : null,
                           radius: 50,
                         ),
                         TextButton(
                           onPressed: () async {
                             final File image = await Utils.pickImage();
 
-                            if (image != null) {
-                              model.setPickedImage(image);
-                            }
+                            model.setPickedImage(image);
                           },
                           child: Text(
                             "Change profile image",

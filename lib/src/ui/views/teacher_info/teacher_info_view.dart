@@ -8,12 +8,13 @@ import 'package:stacked/stacked.dart';
 
 import './teacher_info_view_model.dart';
 
+@RoutePage()
 class TeacherInfoView extends StatelessWidget {
   final String id;
 
   const TeacherInfoView({
-    Key key,
-    @PathParam('id') @required this.id,
+    Key? key,
+    @PathParam('id') required this.id,
   }) : super(key: key);
 
   @override
@@ -29,7 +30,7 @@ class TeacherInfoView extends StatelessWidget {
       builder: (
         BuildContext context,
         TeacherInfoViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           appBar: AppBar(

@@ -1,20 +1,21 @@
+import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_homework_item.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:stacked/stacked.dart';
 
-import 'package:arrowad_grade_eleven/src/app/models/k_homework.dart';
-
 import './homework_items_view_model.dart';
 
+@RoutePage()
 class HomeworkItemsView extends StatelessWidget {
   final KHomework homework;
 
   const HomeworkItemsView({
-    Key key,
-    @required this.homework,
+    Key? key,
+    required this.homework,
   }) : super(key: key);
 
   @override
@@ -30,7 +31,7 @@ class HomeworkItemsView extends StatelessWidget {
       builder: (
         BuildContext context,
         HomeworkItemsViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           appBar: AppBar(

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:meta/meta.dart';
-
 class KTeacher {
   final String id;
   final String firstName;
@@ -11,21 +9,21 @@ class KTeacher {
   final String subject;
 
   const KTeacher({
-    @required this.id,
-    @required this.firstName,
-    @required this.lastName,
-    @required this.photoUrl,
-    @required this.phoneNumber,
-    @required this.subject,
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.photoUrl,
+    required this.phoneNumber,
+    required this.subject,
   });
 
   KTeacher copyWith({
-    String id,
-    String firstName,
-    String lastName,
-    String photoUrl,
-    String phoneNumber,
-    String subject,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? photoUrl,
+    String? phoneNumber,
+    String? subject,
   }) {
     return KTeacher(
       id: id ?? this.id,

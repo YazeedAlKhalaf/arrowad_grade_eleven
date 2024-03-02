@@ -1,4 +1,4 @@
-String validateHomeworkItemDescription(String description) {
+String? validateHomeworkItemDescription(String description) {
   final String descriptionTrimmed = description.trim();
 
   if (descriptionTrimmed.isEmpty) {

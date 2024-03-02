@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
 
 class KPushNotificationToken {
   final String token;
@@ -10,17 +9,17 @@ class KPushNotificationToken {
   final Timestamp createdAt;
 
   const KPushNotificationToken({
-    @required this.token,
-    @required this.ownerId,
-    @required this.platform,
-    @required this.createdAt,
+    required this.token,
+    required this.ownerId,
+    required this.platform,
+    required this.createdAt,
   });
 
   KPushNotificationToken copyWith({
-    String token,
-    String ownerId,
-    String platform,
-    Timestamp createdAt,
+    String? token,
+    String? ownerId,
+    String? platform,
+    Timestamp? createdAt,
   }) {
     return KPushNotificationToken(
       token: token ?? this.token,
@@ -40,8 +39,6 @@ class KPushNotificationToken {
   }
 
   factory KPushNotificationToken.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return KPushNotificationToken(
       token: map['token'],
       ownerId: map['ownerId'],

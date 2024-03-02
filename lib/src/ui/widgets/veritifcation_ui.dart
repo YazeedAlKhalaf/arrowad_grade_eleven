@@ -8,8 +8,8 @@ class VerificationUI extends StatelessWidget {
 
   const VerificationUI({
     Key key,
-    @required this.controller,
-    @required this.onPressed,
+    required this.controller,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class VerificationUI extends StatelessWidget {
             "Please be patient while the Verification Code is sent via SMS",
             style: TextStyle(
               fontSize: 12,
-              color: Theme.of(context).textTheme.caption.color,
+              color: Theme.of(context).textTheme.bodySmall.color,
             ),
           ),
           const SizedBox(height: 25),

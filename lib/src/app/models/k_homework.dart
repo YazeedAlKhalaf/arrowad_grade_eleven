@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class KHomework {
   final String id;
@@ -9,15 +8,15 @@ class KHomework {
   final Timestamp createdAt;
 
   const KHomework({
-    @required this.id,
-    @required this.name,
-    @required this.createdAt,
+    required this.id,
+    required this.name,
+    required this.createdAt,
   });
 
   KHomework copyWith({
-    String id,
-    String name,
-    Timestamp createdAt,
+    String? id,
+    String? name,
+    Timestamp? createdAt,
   }) {
     return KHomework(
       id: id ?? this.id,

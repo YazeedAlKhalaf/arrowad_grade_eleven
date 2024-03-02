@@ -1,17 +1,15 @@
-import 'package:arrowad_grade_eleven/src/app/services/firebase_messaging_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
-import 'package:arrowad_grade_eleven/src/app/router/router.dart';
 import 'package:arrowad_grade_eleven/src/app/services/auth_service.dart';
+import 'package:arrowad_grade_eleven/src/app/services/firebase_messaging_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/utils.dart';
 import 'package:arrowad_grade_eleven/src/ui/widgets/veritifcation_ui.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class RegisterViewModel extends CustomBaseViewModel {
   final AuthService _authService = locator<AuthService>();
@@ -36,32 +34,32 @@ class RegisterViewModel extends CustomBaseViewModel {
     notifyListeners();
   }
 
-  String _verificationId;
-  String get verificationId => _verificationId;
+  String? _verificationId;
+  String? get verificationId => _verificationId;
   void setVerificationId(String newValue) {
     _verificationId = newValue;
     notifyListeners();
   }
 
-  int _resendToken;
-  int get resendToken => _resendToken;
+  int? _resendToken;
+  int? get resendToken => _resendToken;
   void setResendToken(int newValue) {
     _resendToken = newValue;
     notifyListeners();
   }
 
-  ConfirmationResult _confirmationResult;
-  ConfirmationResult get confirmationResult => _confirmationResult;
+  ConfirmationResult? _confirmationResult;
+  ConfirmationResult? get confirmationResult => _confirmationResult;
   void setConfirmationResult(ConfirmationResult newValue) {
     _confirmationResult = newValue;
     notifyListeners();
   }
 
   Future<void> registerUser({
-    @required BuildContext context,
+    required BuildContext context,
   }) async {
     // TODO: make web work
-    if (registerFormKey.currentState.validate()) {
+    if (registerFormKey.currentState?.validate() == true) {
       setBusy(true);
       final String firstNameTrimmed = firstNameController.text.trim();
       final String lastNameTrimmed = lastNameController.text.trim();
@@ -118,7 +116,7 @@ class RegisterViewModel extends CustomBaseViewModel {
               } else {
                 await _authService.verifyPhoneNumberWeb(
                   phoneNumber: phoneNumberTrimmed,
-                  confirmationResult: confirmationResult,
+                  confirmationResult: confirmationResult!,
                   verificationCode: verificationCodeController.text,
                 );
               }
@@ -140,10 +138,10 @@ class RegisterViewModel extends CustomBaseViewModel {
   }
 
   Future<dynamic> _getVerificationId({
-    @required String phoneNumber,
-    @required String firstName,
-    @required String lastName,
-    @required String sNumber,
+    required String phoneNumber,
+    required String firstName,
+    required String lastName,
+    required String sNumber,
   }) async {
     /// get verification id
     final dynamic response = await _authService.sendVerificationCode(
@@ -173,11 +171,11 @@ class RegisterViewModel extends CustomBaseViewModel {
   }
 
   Future<void> doVerification({
-    @required BuildContext context,
-    @required String phoneNumber,
-    @required String firstName,
-    @required String lastName,
-    @required String sNumber,
+    required BuildContext context,
+    required String phoneNumber,
+    required String firstName,
+    required String lastName,
+    required String sNumber,
   }) async {
     removeFocus();
     final String verificationCodeString =
@@ -186,7 +184,7 @@ class RegisterViewModel extends CustomBaseViewModel {
     if (verificationCodeString.length == 6) {
       /// verify the phone number
       final dynamic response = await _authService.verifyPhoneNumber(
-        verificationId: verificationId,
+        verificationId: verificationId!,
         verificationCode: verificationCodeString,
         phoneNumber: phoneNumber,
         firstName: firstName,

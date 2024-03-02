@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_error.dart';
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
-import 'package:arrowad_grade_eleven/src/app/router/router.gr.dart';
+import 'package:arrowad_grade_eleven/src/app/router/router.dart';
 import 'package:arrowad_grade_eleven/src/app/services/auth_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/firebase_messaging_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/firestore_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/flash_helper.dart';
+import 'package:flutter/material.dart';
 
 class HomeViewModel extends CustomBaseViewModel {
   final AuthService _authService = locator<AuthService>();
@@ -18,8 +17,8 @@ class HomeViewModel extends CustomBaseViewModel {
   final FirebaseMessagingService _firebaseMessagingService =
       locator<FirebaseMessagingService>();
 
-  BuildContext _context;
-  BuildContext get context => _context;
+  BuildContext? _context;
+  BuildContext? get context => _context;
   void setContext(BuildContext newValue) {
     _context = newValue;
     notifyListeners();
@@ -33,7 +32,7 @@ class HomeViewModel extends CustomBaseViewModel {
   }
 
   Future<void> init({
-    @required BuildContext context,
+    required BuildContext context,
   }) async {
     setContext(context);
 
@@ -45,7 +44,7 @@ class HomeViewModel extends CustomBaseViewModel {
 
     if (response is KError) {
       FlashHelper.errorBar(
-        context,
+        context!,
         message: response.userFriendlyMessage,
       );
       return;
@@ -61,7 +60,7 @@ class HomeViewModel extends CustomBaseViewModel {
   }
 
   Future<void> navigateToTeacherView({
-    @required String teacherId,
+    required String teacherId,
   }) async {
     await _routerService.appRouter.push(
       TeacherInfoRoute(
@@ -83,13 +82,13 @@ class HomeViewModel extends CustomBaseViewModel {
   }
 
   Future<void> signOut() async {
-    final String deviceId = await _firebaseMessagingService.getDeviceToken();
+    final deviceId = await _firebaseMessagingService.getDeviceToken();
     await _firestoreService.deleteDeviceId(
-      deviceId: deviceId,
+      deviceId: deviceId ?? '',
     );
     await _authService.signOut();
 
-    await _routerService.appRouter.pushAndRemoveUntil(
+    await _routerService.appRouter.pushAndPopUntil(
       RegisterRoute(),
       predicate: (_) => false,
     );

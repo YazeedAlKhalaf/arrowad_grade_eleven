@@ -19,15 +19,15 @@ class AddHomeworkViewModel extends CustomBaseViewModel {
     notifyListeners();
   }
 
-  BuildContext _context;
-  BuildContext get context => _context;
+  BuildContext? _context;
+  BuildContext? get context => _context;
   void setContext(BuildContext newValue) {
     _context = newValue;
     notifyListeners();
   }
 
   Future<void> init({
-    @required BuildContext context,
+    required BuildContext context,
   }) async {
     setContext(context);
   }
@@ -35,7 +35,7 @@ class AddHomeworkViewModel extends CustomBaseViewModel {
   Future<void> addNewHomework() async {
     final String nameTrimmed = nameController.text.trim();
 
-    if (addHomeworkFormKey.currentState.validate()) {
+    if (addHomeworkFormKey.currentState?.validate() == true) {
       setBusy(true);
       final dynamic response = await _firestoreService.addNewHomework(
         name: nameTrimmed,
@@ -43,7 +43,7 @@ class AddHomeworkViewModel extends CustomBaseViewModel {
 
       if (response is KError) {
         FlashHelper.errorBar(
-          context,
+          context!,
           message: response.userFriendlyMessage,
         );
         setBusy(false);
@@ -51,7 +51,7 @@ class AddHomeworkViewModel extends CustomBaseViewModel {
       }
 
       FlashHelper.successBar(
-        context,
+        context!,
         message: "Homework added successfully!",
       );
 
@@ -61,7 +61,7 @@ class AddHomeworkViewModel extends CustomBaseViewModel {
     } else {
       setAutoValidate(true);
       FlashHelper.errorBar(
-        context,
+        context!,
         message: "Check the info you provided above!",
       );
     }

@@ -34,23 +34,23 @@ class FirebaseMessagingService {
               AuthorizationStatus.provisional) {
         await _firestoreService.savePushNotificationToken(
           pushNotificationToken: KPushNotificationToken(
-            token: await getDeviceToken(),
-            ownerId: _authService.currentFirebaseUser.uid,
+            token: (await getDeviceToken()) ?? "",
+            ownerId: _authService.currentFirebaseUser!.uid,
             platform: Platform.operatingSystem,
             createdAt: Timestamp.now(),
           ),
-          currentUser: _authService.currentUser,
+          currentUser: _authService.currentUser!,
         );
       }
     } else {
       await _firestoreService.savePushNotificationToken(
         pushNotificationToken: KPushNotificationToken(
-          token: await getDeviceToken(),
-          ownerId: _authService.currentFirebaseUser.uid,
+          token: (await getDeviceToken()) ?? "",
+          ownerId: _authService.currentFirebaseUser!.uid,
           platform: Platform.operatingSystem,
           createdAt: Timestamp.now(),
         ),
-        currentUser: _authService.currentUser,
+        currentUser: _authService.currentUser!,
       );
     }
 
@@ -58,11 +58,11 @@ class FirebaseMessagingService {
       await _firestoreService.savePushNotificationToken(
         pushNotificationToken: KPushNotificationToken(
           token: token,
-          ownerId: _authService.currentFirebaseUser.uid,
+          ownerId: _authService.currentFirebaseUser!.uid,
           platform: Platform.operatingSystem,
           createdAt: Timestamp.now(),
         ),
-        currentUser: _authService.currentUser,
+        currentUser: _authService.currentUser!,
       );
     });
 
@@ -82,8 +82,8 @@ class FirebaseMessagingService {
     });
   }
 
-  Future<String> getDeviceToken() async {
-    final String deviceToken = await _firebaseMessaging.getToken();
+  Future<String?> getDeviceToken() async {
+    final String? deviceToken = await _firebaseMessaging.getToken();
     return deviceToken;
   }
 }

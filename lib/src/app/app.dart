@@ -18,10 +18,10 @@ class App extends StatelessWidget {
       ),
       routerDelegate: _routerService.appRouter.delegate(),
       routeInformationParser: _routerService.appRouter.defaultRouteParser(),
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return GestureDetector(
           onTap: () {
-            FocusManager.instance.primaryFocus.unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
           },
           child: child,
         );

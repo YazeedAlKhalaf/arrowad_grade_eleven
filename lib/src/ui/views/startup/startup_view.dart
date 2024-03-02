@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import './startup_view_model.dart';
 
+@RoutePage()
 class StartupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class StartupView extends StatelessWidget {
       builder: (
         BuildContext context,
         StartupViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           body: Column(

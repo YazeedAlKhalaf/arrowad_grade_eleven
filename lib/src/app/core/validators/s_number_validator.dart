@@ -1,4 +1,4 @@
-String validateSNumber(String sNumber) {
+String? validateSNumber(String sNumber) {
   final String trimmedSNumber = sNumber.trim();
 
   if (trimmedSNumber.isEmpty) {

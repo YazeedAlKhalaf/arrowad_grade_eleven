@@ -1,21 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:stacked/stacked.dart';
-
 import 'package:arrowad_grade_eleven/src/app/core/validators/homework_item_description_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/core/validators/homework_item_name_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/core/validators/homework_item_subject_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:arrowad_grade_eleven/src/ui/widgets/custom_elevated_button.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:stacked/stacked.dart';
 
 import './add_homework_item_view_model.dart';
 
+@RoutePage()
 class AddHomeworkItemView extends StatelessWidget {
   final String homeworkId;
 
   const AddHomeworkItemView({
-    Key key,
-    @required this.homeworkId,
+    Key? key,
+    required this.homeworkId,
   }) : super(key: key);
 
   @override
@@ -31,7 +32,7 @@ class AddHomeworkItemView extends StatelessWidget {
       builder: (
         BuildContext context,
         AddHomeworkItemViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           appBar: AppBar(
@@ -64,8 +65,8 @@ class AddHomeworkItemView extends StatelessWidget {
                         ),
                         maxLength: 50,
                         maxLines: 1,
-                        validator: (String homeworkName) {
-                          return validateHomeworkItemName(homeworkName);
+                        validator: (String? homeworkName) {
+                          return validateHomeworkItemName(homeworkName ?? "");
                         },
                       ),
                       const SizedBox(height: 10),
@@ -79,8 +80,9 @@ class AddHomeworkItemView extends StatelessWidget {
                         ),
                         maxLength: 150,
                         maxLines: 3,
-                        validator: (String description) {
-                          return validateHomeworkItemDescription(description);
+                        validator: (String? description) {
+                          return validateHomeworkItemDescription(
+                              description ?? "");
                         },
                       ),
                       const SizedBox(height: 10),
@@ -102,8 +104,8 @@ class AddHomeworkItemView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        validator: (String subject) {
-                          return validateHomeworkItemSubject(subject);
+                        validator: (String? subject) {
+                          return validateHomeworkItemSubject(subject ?? "");
                         },
                       ),
                       const SizedBox(height: 20),

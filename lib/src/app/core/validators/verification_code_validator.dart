@@ -1,4 +1,4 @@
-String validateVerificationCode(String verificationCode) {
+String? validateVerificationCode(String verificationCode) {
   final String trimmedVerificationCode = verificationCode.trim();
 
   if (trimmedVerificationCode.isEmpty) {

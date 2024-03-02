@@ -9,11 +9,11 @@ class CustomElevatedButton extends StatelessWidget {
 
   const CustomElevatedButton({
     Key key,
-    @required this.text,
+    required this.text,
     this.icon,
     this.iconPath,
-    @required this.color,
-    @required this.onTap,
+    required this.color,
+    required this.onTap,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -33,20 +33,18 @@ class CustomElevatedButton extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           child: Row(
             children: <Widget>[
-              if (icon != null)
-                Icon(
-                  icon,
-                  color: color,
-                  size: 35,
+              Icon(
+                icon,
+                color: color,
+                size: 35,
+              ),
+              ImageIcon(
+                AssetImage(
+                  iconPath,
                 ),
-              if (iconPath != null)
-                ImageIcon(
-                  AssetImage(
-                    iconPath,
-                  ),
-                  color: color,
-                  size: 35,
-                ),
+                color: color,
+                size: 35,
+              ),
               const SizedBox(width: 15),
               Text(
                 text,

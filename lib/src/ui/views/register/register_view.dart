@@ -2,12 +2,13 @@ import 'package:arrowad_grade_eleven/src/app/core/validators/name_validator.dart
 import 'package:arrowad_grade_eleven/src/app/core/validators/phone_number_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/core/validators/s_number_validator.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 
 import './register_view_model.dart';
 
+@RoutePage()
 class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class RegisterView extends StatelessWidget {
       builder: (
         BuildContext context,
         RegisterViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         return Scaffold(
           body: SafeArea(
@@ -59,8 +60,8 @@ class RegisterView extends StatelessWidget {
                                     ),
                                     labelText: "First Name",
                                   ),
-                                  validator: (String firstName) {
-                                    return validateName(firstName, true);
+                                  validator: (String? firstName) {
+                                    return validateName(firstName ?? '', true);
                                   },
                                 ),
                               ),
@@ -74,8 +75,8 @@ class RegisterView extends StatelessWidget {
                                     ),
                                     labelText: "Last Name",
                                   ),
-                                  validator: (String lastName) {
-                                    return validateName(lastName, false);
+                                  validator: (String? lastName) {
+                                    return validateName(lastName ?? '', false);
                                   },
                                 ),
                               ),
@@ -92,8 +93,8 @@ class RegisterView extends StatelessWidget {
                               prefixText: "S",
                             ),
                             maxLength: 6,
-                            validator: (String sNumber) {
-                              return validateSNumber(sNumber);
+                            validator: (String? sNumber) {
+                              return validateSNumber(sNumber ?? '');
                             },
                             keyboardType: TextInputType.number,
                           ),
@@ -106,8 +107,8 @@ class RegisterView extends StatelessWidget {
                               ),
                               labelText: "Phone Number",
                             ),
-                            validator: (String phoneNumber) {
-                              return validatePhoneNumber(phoneNumber);
+                            validator: (String? phoneNumber) {
+                              return validatePhoneNumber(phoneNumber ?? "");
                             },
                             keyboardType: TextInputType.number,
                           ),

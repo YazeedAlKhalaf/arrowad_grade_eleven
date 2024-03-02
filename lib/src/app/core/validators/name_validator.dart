@@ -1,4 +1,4 @@
-String validateName(String name, bool first) {
+String? validateName(String name, bool first) {
   final String trimmedName = name.trim();
   final String firstOrLast = first ? "First" : "Last";
 

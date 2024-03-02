@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
 
 class KHomeworkItem {
   final String id;
@@ -13,23 +12,23 @@ class KHomeworkItem {
   final Timestamp createdAt;
 
   KHomeworkItem({
-    @required this.id,
-    @required this.creatorId,
-    @required this.subject,
-    @required this.name,
-    @required this.description,
-    @required this.dueDate,
-    @required this.createdAt,
+    required this.id,
+    required this.creatorId,
+    required this.subject,
+    required this.name,
+    required this.description,
+    required this.dueDate,
+    required this.createdAt,
   });
 
   KHomeworkItem copyWith({
-    String id,
-    String creatorId,
-    String subject,
-    String name,
-    String description,
-    DateTime dueDate,
-    Timestamp createdAt,
+    String? id,
+    String? creatorId,
+    String? subject,
+    String? name,
+    String? description,
+    DateTime? dueDate,
+    Timestamp? createdAt,
   }) {
     return KHomeworkItem(
       id: id ?? this.id,

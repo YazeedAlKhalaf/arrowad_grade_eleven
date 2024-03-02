@@ -55,7 +55,7 @@ class LoginViewModel extends CustomBaseViewModel {
   }
 
   Future<void> loginUser({
-    @required BuildContext context,
+    required BuildContext context,
   }) async {
     // TODO: make web work
     if (loginFormKey.currentState.validate()) {
@@ -126,7 +126,7 @@ class LoginViewModel extends CustomBaseViewModel {
   }
 
   Future<dynamic> _getVerificationId({
-    @required String phoneNumber,
+    required String phoneNumber,
   }) async {
     /// get verification id
     final dynamic response = await _authService.sendVerificationCode(
@@ -153,8 +153,8 @@ class LoginViewModel extends CustomBaseViewModel {
   }
 
   Future<void> doVerification({
-    @required BuildContext context,
-    @required String phoneNumber,
+    required BuildContext context,
+    required String phoneNumber,
   }) async {
     removeFocus();
     final String verificationCodeString =

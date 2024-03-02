@@ -13,9 +13,9 @@ class AddHomeworkItemViewModel extends CustomBaseViewModel {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-  String _subjectDropdown;
-  String get subjectDropdown => _subjectDropdown;
-  void setSubjectDropdown(String newValue) {
+  String? _subjectDropdown;
+  String? get subjectDropdown => _subjectDropdown;
+  void setSubjectDropdown(String? newValue) {
     _subjectDropdown = newValue;
     notifyListeners();
   }
@@ -27,23 +27,23 @@ class AddHomeworkItemViewModel extends CustomBaseViewModel {
     notifyListeners();
   }
 
-  BuildContext _context;
-  BuildContext get context => _context;
+  BuildContext? _context;
+  BuildContext? get context => _context;
   void setContext(BuildContext newValue) {
     _context = newValue;
     notifyListeners();
   }
 
-  String _homeworkId;
-  String get homeworkId => _homeworkId;
+  String? _homeworkId;
+  String? get homeworkId => _homeworkId;
   void setHomeworkId(String newValue) {
     _homeworkId = newValue;
     notifyListeners();
   }
 
   Future<void> init({
-    @required BuildContext context,
-    @required String homeworkId,
+    required BuildContext context,
+    required String homeworkId,
   }) async {
     setContext(context);
     setHomeworkId(homeworkId);
@@ -53,21 +53,21 @@ class AddHomeworkItemViewModel extends CustomBaseViewModel {
   Future<void> addNewHomeworkItem() async {
     final String nameTrimmed = nameController.text.trim();
     final String descriptionTrimmed = descriptionController.text.trim();
-    final String subjectTrimmed = _subjectDropdown.trim();
+    final String? subjectTrimmed = _subjectDropdown?.trim();
 
-    if (addHomeworkFormKey.currentState.validate()) {
+    if (addHomeworkFormKey.currentState?.validate() == true) {
       setBusy(true);
       final dynamic response = await _firestoreService.addNewHomeworkItem(
-        homeworkId: homeworkId,
+        homeworkId: homeworkId!,
         name: nameTrimmed,
         description: descriptionTrimmed,
-        subject: subjectTrimmed,
-        creatorId: currentFirebaseUser.uid,
+        subject: subjectTrimmed!,
+        creatorId: currentFirebaseUser!.uid,
       );
 
       if (response is KError) {
         FlashHelper.errorBar(
-          context,
+          context!,
           message: response.userFriendlyMessage,
         );
         setBusy(false);
@@ -75,7 +75,7 @@ class AddHomeworkItemViewModel extends CustomBaseViewModel {
       }
 
       FlashHelper.successBar(
-        context,
+        context!,
         message: "Homework item added successfully!",
       );
 
@@ -85,7 +85,7 @@ class AddHomeworkItemViewModel extends CustomBaseViewModel {
     } else {
       setAutoValidate(true);
       FlashHelper.errorBar(
-        context,
+        context!,
         message: "Check the info you provided above!",
       );
     }

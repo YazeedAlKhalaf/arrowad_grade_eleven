@@ -1,6 +1,5 @@
 import 'package:arrowad_grade_eleven/src/app/core/custom_base_view_model.dart';
 import 'package:arrowad_grade_eleven/src/app/locator/locator.dart';
-import 'package:arrowad_grade_eleven/src/app/router/router.dart';
 import 'package:arrowad_grade_eleven/src/app/services/auth_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/firebase_messaging_service.dart';
 import 'package:arrowad_grade_eleven/src/app/services/router_service.dart';

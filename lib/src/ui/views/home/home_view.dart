@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:stacked/stacked.dart';
-import 'package:intl/intl.dart' as intl;
-
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
 import 'package:arrowad_grade_eleven/src/ui/widgets/custom_elevated_button.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:stacked/stacked.dart';
 
 import './home_view_model.dart';
 
+@RoutePage()
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class HomeView extends StatelessWidget {
       builder: (
         BuildContext context,
         HomeViewModel model,
-        Widget child,
+        Widget? child,
       ) {
         Widget _buildDrawerRow() {
           return Builder(
@@ -329,10 +330,10 @@ class HomeView extends StatelessWidget {
         }
 
         Widget _buildTile({
-          @required String text,
-          @required IconData iconData,
+          required String text,
+          required IconData iconData,
           Color color,
-          @required void Function() onTap,
+          required void Function() onTap,
         }) {
           return ListTile(
             leading: Icon(

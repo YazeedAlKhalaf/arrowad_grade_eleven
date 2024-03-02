@@ -1,10 +1,12 @@
 import 'package:arrowad_grade_eleven/src/app/models/k_teacher.dart';
 import 'package:arrowad_grade_eleven/src/app/utils/colors.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import './teacher_list_view_model.dart';
 
+@RoutePage()
 class TeacherListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
